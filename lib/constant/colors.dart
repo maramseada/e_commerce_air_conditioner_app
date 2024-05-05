@@ -1,0 +1,10 @@
+import 'package:flutter/material.dart';
+const kPrimaryColor = Color(0xff1D75B1);
+const moreColor = Color(0x1A1D75B1);
+const redColor = Color(0xFFE60B4D);
+const paleRed = Color(0x1AE60B4D);
+const kPrimaryColorDark = Color(0xff165079);
+const secondColor = Color(0xffCA7009);
+const grayColor = Color(0xff878383);
+const paleGrayColor = Color(0xffF7F7F7);
+const greenColor = Color(0xff0FAC1E);

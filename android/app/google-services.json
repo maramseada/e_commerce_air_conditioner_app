@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "313764092288",
+    "project_id": "albakr-f9101",
+    "storage_bucket": "albakr-f9101.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313764092288:android:17945300de3cfbe44c8965",
+        "android_client_info": {
+          "package_name": "com.athr.albakr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIx8abSMfcCTU07LvoCcWODHpobhUlswM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313764092288:android:61a1f6dad8ac0dea4c8965",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIx8abSMfcCTU07LvoCcWODHpobhUlswM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
