@@ -19,7 +19,7 @@ class CartProductDetailsCubit extends Cubit<CartProductDetailsState> {
       await cartApi.addProduct(itemId: id, quantity: amount.toString(), addId: addsId.toString());
       emit(CartProductDetailsSuccess()); // Update with the latest product state
     } on Exception catch (e) {
-      emit(CartProductDetailsFailure(errMessage: 'error: $e'));
+      emit(CartProductDetailsFailure(errMessage: 'error cart : $e'));
     }
   }
 
