@@ -15,6 +15,7 @@ import '../../../detailsProduct/presentation/controller/fav_product_cubit.dart';
 import '../../../detailsProduct/presentation/controller/product_details_cubit.dart';
 import '../../../../../api/cart_api.dart';
 import '../../../request_prise/request_prise.dart';
+import '../widgets/floating_button_ask_price.dart';
 
 class ShowBestSellers extends StatefulWidget {
  final  String productName;
@@ -83,21 +84,19 @@ class _ShowBestSellersState extends State<ShowBestSellers> {
                         ),
                         body: Center(
                             child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 30,
-                              ),
+                          child:
+
+
                               Container(
-                                margin: EdgeInsets.only(left: size.width * 0.04, right: size.width * 0.04, top: size.height * 0.01),
+                                margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                                 child: GridView.builder(
                                   physics: const ScrollPhysics(),
                                   shrinkWrap: true,
                                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
-                                    childAspectRatio: 0.46,
+                                    childAspectRatio: 0.5,
                                     crossAxisSpacing: 16,
-                                    mainAxisSpacing: 8,
+                                    mainAxisSpacing: 4,
                                   ),
                                   itemCount: products!.length,
                                   // Set the number of items in the grid
@@ -338,37 +337,11 @@ class _ShowBestSellersState extends State<ShowBestSellers> {
                                   },
                                 ),
                               ),
-                              const SizedBox(
-                                height: 70,
-                              ),
-                            ],
-                          ),
+
+
+
                         )),
-                        floatingActionButton: Container(
-                          margin: EdgeInsets.only(right: size.width / 10),
-                          padding: EdgeInsets.symmetric(vertical: 20, horizontal: size.width * 0.09),
-                          child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: FloatingActionButton.extended(
-                              elevation: 10,
-                              onPressed: () {
-                                navigateTo(context, RequestPrice());
-                              },
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-                              label: Text(
-                                'طلب عرض سعر',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: size.width * 0.045,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: 'Almarai',
-                                ),
-                              ),
-                              icon: const Icon(Icons.add, color: Colors.white, size: 25),
-                              backgroundColor: kPrimaryColor,
-                            ),
-                          ),
-                        ),
+                        floatingActionButton: const AskPriceFloatingButton(),
                       );
                     }
                   },
