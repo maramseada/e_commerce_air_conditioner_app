@@ -8,6 +8,8 @@ import 'package:e_commerce/presentation/BottomBar/BottomBar.dart';
 import 'package:e_commerce/presentation/screens/filter/filter.dart';
 import 'package:e_commerce/presentation/screens/forget_password/foget_pass/forget_pass.dart';
 import 'package:e_commerce/presentation/screens/forget_password/new_pass/new_pass.dart';
+import 'package:e_commerce/presentation/screens/home/presentation/controllers/Carousel/carousel_cubit.dart';
+import 'package:e_commerce/presentation/screens/home/presentation/controllers/Home/home_cubit.dart';
 import 'package:e_commerce/presentation/screens/login/login.dart';
 import 'package:e_commerce/presentation/screens/result_search/result_search.dart';
 import 'package:e_commerce/presentation/screens/search/search.dart';
@@ -70,14 +72,12 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => ProfileCubit(api)),
           BlocProvider(create: (context) => ProductDetailsCubit(api, favApi, cartApi)),
-          BlocProvider(
-              create: (context) => ImagesCubit(
-                    api,
-                  )),
-          BlocProvider(create: (context)=> AccessoryDetailsCubit(api, favApi, cartApi)),
-          BlocProvider(create: (context)=> FavProductDetailsCubit(api, favApi)),
-  BlocProvider(create: (context)=> CartProductDetailsCubit(api, cartApi)),
-
+          BlocProvider(create: (context) => HomeCubit(api, favApi, cartApi)),
+          BlocProvider(create: (context) => ImagesCubit(api)),
+          BlocProvider(create: (context) => AccessoryDetailsCubit(api, favApi, cartApi)),
+          BlocProvider(create: (context) => FavProductDetailsCubit(api, favApi)),
+          BlocProvider(create: (context) => CartProductDetailsCubit(api, cartApi)),
+          BlocProvider(create: (context) => CarouselHomeCubit(api)),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

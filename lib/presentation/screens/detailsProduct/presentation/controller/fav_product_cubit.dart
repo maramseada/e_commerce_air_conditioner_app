@@ -28,15 +28,12 @@ class FavProductDetailsCubit extends Cubit<FavProductDetailsState> {
     }
   }
   void favProduct({required int id}) async {
-    print('this is loading fav ');
     emit(FavProductDetailsLoading());
     try {
       isFavProduct = await favApi.FavProduct(id);
-      print('this is FavProductDetailsSuccess fav ');
 
       emit(FavProductDetailsSuccess(product: isFavProduct?.status)); // Update with the latest product state
     } catch (e) {
-      print('this is FavProductDetailsFailure fav ');
 
       emit(FavProductDetailsFailure(errMessage: 'Error favoriting product: $e'));
     }

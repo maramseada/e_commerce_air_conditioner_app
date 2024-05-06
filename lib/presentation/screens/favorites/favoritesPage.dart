@@ -16,6 +16,8 @@ import '../../../models/ordermodel.dart';
 import '../../BottomBar/BottomBar.dart';
 import '../detailsProduct/presentation/components/accessory_details.dart';
 import '../detailsProduct/presentation/controller/acessory_details_cubit.dart';
+import '../detailsProduct/presentation/controller/fav_product_cubit.dart';
+import '../detailsProduct/presentation/controller/product_details_cubit.dart';
 import '../detailsProduct/presentation/screens/accessory_details_body.dart';
 import '../detailsProduct/presentation/components/productDetails.dart';
 
@@ -118,6 +120,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                   onTap: () {
+                                    BlocProvider.of<ProductDetailsCubit>(context).getProductDetails(
+                                      id: data!.products[index].id,
+                                    );
+
+                                    BlocProvider.of<FavProductDetailsCubit>(context).isFav(
+                                      id: data!.products[index].id,
+                                    );
+
+
 
                                     Navigator.push(
                                         context,

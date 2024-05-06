@@ -23,6 +23,4 @@ class CartProductDetailsCubit extends Cubit<CartProductDetailsState> {
     }
   }
 
-
-
 }

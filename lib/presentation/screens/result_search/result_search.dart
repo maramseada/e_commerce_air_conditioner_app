@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,6 +12,8 @@ import '../../../constant/images.dart';
 import '../../../constant/navigator.dart';
 import '../../../models/ordermodel.dart';
 import '../detailsProduct/presentation/components/productDetails.dart';
+import '../detailsProduct/presentation/controller/fav_product_cubit.dart';
+import '../detailsProduct/presentation/controller/product_details_cubit.dart';
 
 class ResultSearch extends StatefulWidget {
   const ResultSearch({Key? key, required this.searchQuery}) : super(key: key);
@@ -116,6 +119,14 @@ class _ResultSearchState extends State<ResultSearch> {
                                     itemBuilder: (context, index) {
                                       return GestureDetector(
                                           onTap: () {
+                                            BlocProvider.of<ProductDetailsCubit>(context).getProductDetails(
+                                              id: products![index].id,
+                                            );
+
+                                            BlocProvider.of<FavProductDetailsCubit>(context).isFav(
+                                              id: products![index].id,
+                                            );
+
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(

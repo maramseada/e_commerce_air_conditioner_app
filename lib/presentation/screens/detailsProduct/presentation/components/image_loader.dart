@@ -14,7 +14,7 @@ class ImageLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<ImagesCubit>(context).getImage(image: imageUrl);
 
-    return BlocConsumer<ImagesCubit, ImagesState>(
+    return BlocBuilder<ImagesCubit, ImagesState>(
       builder: (context, state) {
         if (state is ImagesLoading) {
           return Container();
@@ -28,8 +28,7 @@ class ImageLoader extends StatelessWidget {
         } else {
           return Container();
         }},
-      listener: (context, state) {
-      },
+
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:e_commerce/presentation/screens/detailsProduct/presentation/controller/product_details_cubit.dart';
 import 'package:e_commerce/presentation/screens/detailsProduct/presentation/controller/product_details_state.dart';
 import 'package:e_commerce/presentation/screens/detailsProduct/presentation/screens/product_details_body.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,7 +9,8 @@ import 'favourite_icon_product.dart';
 class ProductDetails extends StatefulWidget {
   final int id;
 
-  ProductDetails({
+  const ProductDetails({
+    super.key,
     required this.id,
   });
 
@@ -26,7 +26,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        appBar:AppBar(
+        appBar: AppBar(
           centerTitle: true,
           title: const Text(
             'تفاصيل المنتج',
@@ -37,13 +37,15 @@ class _ProductDetailsState extends State<ProductDetails> {
             ),
           ),
           actions: [
-            FavoriteIconBloc(id: widget.id,)
+            FavoriteIconBloc(
+              id: widget.id,
+            )
           ],
-        ) ,
+        ),
         body: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
           builder: (BuildContext context, state) {
             if (state is ProductDetailsLoading) {
-              return Center(child: CircularProgressIndicator()); // Show loading indicator
+              return const Center(child: CircularProgressIndicator()); // Show loading indicator
             } else if (state is ProductDetailsSuccess) {
               final product = state.product;
               return ProductDetailsBody(

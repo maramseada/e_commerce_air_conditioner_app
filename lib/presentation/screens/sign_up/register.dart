@@ -13,7 +13,6 @@ import '../../../api/api.dart';
 import '../../../models/user.dart';
 import '../../../constant/images.dart';
 import '../../../utilities/shared_pref.dart';
-import '../Home/home.dart';
 import '../otp/otp.dart';
 
 class Register extends StatefulWidget {
