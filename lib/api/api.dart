@@ -257,7 +257,7 @@ class Api {
       // Handle errors
     }
   }
-  Future<ProductsModel?>  productDetails({required int id})async {
+  Future<ProductsModel>?  productDetails({required int id})async {
     ProductsModel? product;
     final url = '$baseUrl/product/details?product_id=$id';
     try {

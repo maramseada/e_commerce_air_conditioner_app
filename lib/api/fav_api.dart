@@ -70,6 +70,7 @@ class FavApi {
       throw Exception('Error fetching profile data');
     }
   }
+
   Future<Widget> ImageHome(String image) async {
     final url = 'https://albakr-ac.com/$image'; // Assuming $baseUrl already includes the protocol (http:// or https://)
 
@@ -153,7 +154,7 @@ class FavApi {
       if (response.statusCode == 200 ||response.statusCode == 422 )  {
         final responseData = response.data;
         if (responseData != null) {
-        data = responseData['data'];
+        data = FavouriteProductModel.fromJson(responseData['data']);
         return data;
       } }else if (response.statusCode == 422) {
       }
