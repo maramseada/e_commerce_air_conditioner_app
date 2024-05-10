@@ -62,7 +62,7 @@ class _BestSellersBodyState extends State<BestSellersBody> {
                               ))).then((_) => setState(() {}));
                 },
                 child: BestSellersProduct(
-                  product: widget.products![index], isFavProduct: widget.products![index].favorite!,
+                  product: widget.products![index]
                 ));
           },
         ),

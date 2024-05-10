@@ -13,7 +13,7 @@ class BestSellersInitial extends BestSellersState{}
 class BestSellersLoading extends BestSellersState{}
 class BestSellersSuccess extends BestSellersState{
   List<ProductsModel>? products;
-  BestSellersSuccess({required this.products});
+  BestSellersSuccess({ this.products});
 
 
 }

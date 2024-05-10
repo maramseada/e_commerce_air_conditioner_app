@@ -13,7 +13,7 @@ class FavProductDetailsCubit extends Cubit<FavProductDetailsState> {
   FavApi? favApi;
 
   FavouriteProductModel? isFavProduct;
-  bool isProductFav = false;
+  bool? isProductFav;
   BestSellersCubit? bestSellersCubit; // Create an instance of BestSellersCubit
 
   FavProductDetailsCubit({ this.api,  this.favApi, this.bestSellersCubit}) : super(FavProductDetailsInitial());
@@ -37,15 +37,12 @@ class FavProductDetailsCubit extends Cubit<FavProductDetailsState> {
     }
   }
 
-  Future<void> _updateBestSellers() async {
-    // Call getBestSellers method of BestSellersCubit to update the best sellers list
-     bestSellersCubit?.getBestSellers();
-  }
+
 
   void favProduct({required int id}) async {
     try {
       isFavProduct = await favApi?.FavProduct(id);
-      _updateBestSellers(); // Call the method to update best sellers list
+      isProductFav = isFavProduct?.status;
       emit(FavProductDetailsSuccess(product: isFavProduct?.status));
     } catch (e) {
       emit(FavProductDetailsFailure(errMessage: 'Error favoriting product: $e'));
@@ -55,7 +52,8 @@ class FavProductDetailsCubit extends Cubit<FavProductDetailsState> {
   void unFavProduct({required int id}) async {
     try {
       isFavProduct = await favApi?.unFavProduct(id);
-      _updateBestSellers(); // Call the method to update best sellers list
+      isProductFav = isFavProduct?.status;
+
       emit(FavProductDetailsSuccess(product: isProductFav));
     } on Exception catch (e) {
       emit(FavProductDetailsFailure(errMessage: 'error: $e'));

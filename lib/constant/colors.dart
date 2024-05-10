@@ -8,3 +8,4 @@ const secondColor = Color(0xffCA7009);
 const grayColor = Color(0xff878383);
 const paleGrayColor = Color(0xffF7F7F7);
 const greenColor = Color(0xff0FAC1E);
+const borderButtonColor = Color(0x3D1D75B1);

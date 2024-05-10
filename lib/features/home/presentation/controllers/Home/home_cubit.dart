@@ -15,7 +15,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeModel? home;
   FavouriteProductModel? isFavProduct;
   bool? isProductFav;
-
+  List<Product>? productsBestSellers;
   int amount = 1;
   HomeCubit(this.api, this.favApi, this.cartApi) : super(HomeInitial());
 
@@ -30,7 +30,16 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeFailure(errMessage: 'error: $e'));
     }
   }
-
+  // void getBestSellersHome() async {
+  //   try {
+  //     home = await api.Home();
+  //     print('omkpmpokok');
+  //     productsBestSellers = home?.products;
+  //     emit(HomeSuccess(home: home));
+  //   } catch (e, stackTrace) {
+  //     emit(HomeFailure(errMessage: '$e  $stackTrace'));
+  //   }
+  // }
 
 
 }

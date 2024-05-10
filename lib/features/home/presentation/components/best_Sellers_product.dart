@@ -9,16 +9,15 @@ import '../../../../../api/api.dart';
 import '../../../../../constant/colors.dart';
 import '../../../../../models/ordermodel.dart';
 
+import '../../../../widgets/add_to_cart_button.dart';
 import '../../../screens/detailsProduct/presentation/controller/cart_product_cubit.dart';
 import '../../../screens/detailsProduct/presentation/controller/fav_product_cubit.dart';
 import '../../../screens/detailsProduct/presentation/controller/product/product_details_state.dart';
 import '../controllers/best_sellers/best_sellers_cubit.dart';
-import 'favourite_icon_list_view.dart';
 
 class BestSellersProduct extends StatefulWidget {
   final ProductsModel? product;
-  final bool isFavProduct; // Accept favorite status as a parameter
-  BestSellersProduct({Key? key, required this.product, required this.isFavProduct}) : super(key: key);
+  const BestSellersProduct({Key? key, required this.product, }) : super(key: key);
 
   @override
   State<BestSellersProduct> createState() => _BestSellersProductState();
@@ -26,27 +25,40 @@ class BestSellersProduct extends StatefulWidget {
 
 class _BestSellersProductState extends State<BestSellersProduct> {
   Api api = Api();
-  bool isFavProduct = false ;
+  bool isFavProduct = false;
+  late Future<Widget> _imageFuture;
+
   @override
   void initState() {
-    isFavProduct = widget.product!.favorite?? false;
+    isFavProduct = widget.product!.favorite ?? false;
+    _imageFuture = api.ImageHome(widget.product!.image);
+
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final cubit = BlocProvider.of<FavProductDetailsCubit>(context);
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+
+
+
+    return
+
+
+
+
+      Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       decoration: BoxDecoration(
         color: widget.product!.quantity != 0 ? Colors.white : paleGrayColor,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1), // Shadow color
-            spreadRadius: 10, // How much the shadow should spread
-            blurRadius: 10, // How soft the shadow should be
-            offset: const Offset(0, 3), // Changes position of shadow
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 10,
+            blurRadius: 10,
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -58,39 +70,35 @@ class _BestSellersProductState extends State<BestSellersProduct> {
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.05), // Shadow color
-                  spreadRadius: 1, // How much the shadow should spread
-                  blurRadius: 10, // How soft the shadow should be
-                  offset: const Offset(0, 5), // Changes position of shadow
+                  color: Colors.grey.withOpacity(0.05),
+                  spreadRadius: 1,
+                  blurRadius: 10,
+                  offset: const Offset(0, 5),
                 ),
               ],
             ),
             child: FutureBuilder<Widget>(
-                future: api.ImageHome(widget.product!.image),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Container();
-                  } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  } else {
-                    final imageWidget = snapshot.data;
-                    return imageWidget != null
-                        ? SizedBox(
-                            child: imageWidget,
-                          )
-                        : const SizedBox(); //
-                  }
-                }),
+              future: _imageFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Container();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else {
+                  return snapshot.data ?? const SizedBox();
+                }
+              },
+            ),
           ),
           Container(
             height: 60,
-            padding: EdgeInsets.only(top: size.height * 0.01),
+            padding: const EdgeInsets.only(top:8),
             alignment: Alignment.centerRight,
             child: Text(
               widget.product!.name,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: size.width * 0.04,
+                fontSize: getResponsiveFontSize(context, fontSize: 18),
                 fontFamily: 'Almarai',
               ),
             ),
@@ -141,7 +149,7 @@ class _BestSellersProductState extends State<BestSellersProduct> {
                 tapOnlyMode: false,
               ),
               SizedBox(
-                width: size.width * 0.03,
+                width: size.width * 0.02,
               ),
               Text(
                 '(${widget.product!.totalRate})',
@@ -149,7 +157,7 @@ class _BestSellersProductState extends State<BestSellersProduct> {
                   color: const Color(0xFFD3A100),
                   fontFamily: 'Almarai',
                   fontWeight: FontWeight.bold,
-                  fontSize: size.width * 0.04,
+                  fontSize: getResponsiveFontSize(context, fontSize: 20),
                 ),
               )
             ],
@@ -160,92 +168,55 @@ class _BestSellersProductState extends State<BestSellersProduct> {
             child: Text(
               '${widget.product!.price} ر.س ',
               style: TextStyle(
-                fontSize: size.width * 0.04,
+                fontSize: getResponsiveFontSize(context, fontSize: 18),
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Almarai',
                 color: const Color(0xFFCA7009),
               ),
             ),
           ),
-
           Container(
             margin: const EdgeInsets.only(top: 10),
-            padding: EdgeInsets.all(0),
             child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 widget.product!.quantity != 0
                     ? Expanded(
-                      child: GestureDetector(
+                        child: GestureDetector(
                           onTap: () {
                             BlocProvider.of<CartProductDetailsCubit>(context).addToCart(
                               id: widget.product!.id.toString(),
                               amount: 1,
                             );
                           },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric( vertical: 8),
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.07), // Shadow color
-                                  spreadRadius: 1, // How much the shadow should spread
-                                  blurRadius: 1, // How soft the shadow should be
-                                  offset: const Offset(1, 1), // Changes position of shadow
-                                ),
-                              ],
-                              border: Border.all(width: 1.0, color: const Color(0x3D1D75B1)),
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/images/shopping-cart.svg',
-                                ),
-                                const SizedBox(
-                                  width: 3,
-                                ),
-                                 Text(
-                                  'أضف للعربة',
-                                  style: TextStyle(fontFamily: 'Almarai', fontWeight: FontWeight.w700, fontSize: getResponsiveFontSize(context, fontSize: 14), color: kPrimaryColor),
-                                ),
-                              ],
-                            ),
-                          ),
+                          child:const AddToCartButton(),
                         ),
-                    )
+                      )
                     : Text(
                         'المنتج غير متوفر',
                         style: TextStyle(
                           color: redColor,
-                          fontSize: size.width * 0.043,
+                          fontSize: getResponsiveFontSize(context, fontSize: 20),
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Almarai',
                         ),
                       ),
-
                 BlocConsumer<FavProductDetailsCubit, FavProductDetailsState>(
                   builder: (context, state) {
                     if (state is FavProductDetailsLoading) {
                       // Show a loading indicator
-                      return SizedBox();
+                      return const SizedBox();
                     } else if (state is FavProductDetailsSuccess) {
                       // Access the success state and build your UI accordingly
-                  //    final isFavProduct = cubit.isProductFav ?? false;
-
+                      //    final isFavProduct = cubit.isProductFav ?? false;
                       return IconButton(
                         onPressed: () {
-                          BlocProvider.of<BestSellersCubit>(context).getBestSellersFav();
-
                           if (isFavProduct) {
-
                             cubit.unFavProduct(id: widget.product!.id);
-
+                            BlocProvider.of<BestSellersCubit>(context).getBestSellersFav();
                           } else {
                             cubit.favProduct(id: widget.product!.id);
-
+                            BlocProvider.of<BestSellersCubit>(context).getBestSellersFav();
                           }
                         },
                         icon: isFavProduct
@@ -254,14 +225,14 @@ class _BestSellersProductState extends State<BestSellersProduct> {
                       );
                     } else if (state is FavProductDetailsFailure) {
                       // Handle the failure state
-                      return  SvgPicture.asset('assets/images/favicon.svg', width: 25);
+                      return SvgPicture.asset('assets/images/favicon.svg', width: 25);
                     } else {
-//todo see the sizzee
-return  SvgPicture.asset('assets/images/favicon.svg', width: 25);
+                      //todo see the sizzee
+                      return SvgPicture.asset('assets/images/favicon.svg', width: 25);
                     }
                   },
                   listener: (context, state) {
-                     isFavProduct =  widget.product!.favorite?? false;
+                    isFavProduct = widget.product!.favorite ?? false;
 
                   },
                 )
@@ -273,5 +244,3 @@ return  SvgPicture.asset('assets/images/favicon.svg', width: 25);
     );
   }
 }
-
-

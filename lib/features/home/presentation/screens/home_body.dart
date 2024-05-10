@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/home/presentation/controllers/best_sellers/best_sellers_state.dart';
 import 'package:e_commerce/models/homeModel.dart';
 import 'package:e_commerce/features/home/presentation/components/best_sellers_list_view.dart';
 import 'package:e_commerce/features/home/presentation/components/carousel.dart';
@@ -23,6 +24,10 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -72,8 +77,6 @@ class _HomeBodyState extends State<HomeBody> {
                       TextButton(
                         onPressed: () {
                           BlocProvider.of<BestSellersCubit>(context).getBestSellers();
-
-                          //TODO set State after navigation
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -105,10 +108,8 @@ class _HomeBodyState extends State<HomeBody> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
-                  child: BestSeller(),
-                ),
+          BestSeller(),
+
           Padding(
                   padding: EdgeInsets.symmetric(horizontal: size.width * 0.025, vertical: size.height * 0.03),
                   child: Row(

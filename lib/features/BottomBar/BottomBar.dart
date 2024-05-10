@@ -5,8 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../home/presentation/controllers/Carousel/carousel_cubit.dart';
 import '../home/presentation/controllers/Home/home_cubit.dart';
+import '../home/presentation/controllers/best_sellers/best_sellers_cubit.dart';
 import '../home/presentation/screens/home.dart';
-import '../screens/more/morePage.dart';
+import '../more/presentation/screens/morePage.dart';
 import '../screens/our_projects/ourProjectsPage.dart';
 import '../screens/our_work/ourWorkPage.dart';
 import '../screens/shoppingCart/shoppingCartPage.dart';
@@ -37,6 +38,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
 
     BlocProvider.of<HomeCubit>(context).getHome();
     BlocProvider.of<CarouselHomeCubit>(context).getCarouselHome();
+
   }
 
   @override
@@ -81,6 +83,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
       setState(() {
         _selectedIndex = index;
         BlocProvider.of<HomeCubit>(context).getHome();
+
       });
     }
     setState(() {

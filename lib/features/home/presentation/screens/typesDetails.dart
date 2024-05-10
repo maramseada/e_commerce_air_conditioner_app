@@ -21,7 +21,7 @@ import '../../../../../widgets/checkbox.dart';
 import '../../../screens/detailsProduct/presentation/controller/fav_product_cubit.dart';
 import '../../../screens/detailsProduct/presentation/controller/product/product_details_cubit.dart';
 import '../../../screens/filter/filter.dart';
-import '../widgets/floating_button_ask_price.dart';
+import '../../../../widgets/floating_button_ask_price.dart';
 
 class TypesDetails extends StatefulWidget {
  final int productId;

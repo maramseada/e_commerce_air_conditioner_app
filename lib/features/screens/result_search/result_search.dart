@@ -1,3 +1,4 @@
+import 'package:e_commerce/widgets/add_to_cart_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -228,22 +229,10 @@ class _ResultSearchState extends State<ResultSearch> {
                                                         )
                                                       ],
                                                     ),
-                                                    Container(
-                                                      padding: EdgeInsets.only(top: size.height * 0.01),
-                                                      child: Text(
-                                                        getLimitedDescription(products![index].description, 10),
-                                                        overflow: TextOverflow.fade,
-                                                        textAlign: TextAlign.right,
-                                                        style: TextStyle(
-                                                          fontSize: size.width * 0.025,
-                                                          fontFamily: 'Almarai',
-                                                          color: grayColor,
-                                                        ),
-                                                      ),
-                                                    ),
+
                                                     Container(
                                                       alignment: Alignment.centerRight,
-                                                      padding: EdgeInsets.only(top: 8),
+                                                      padding: const EdgeInsets.only(top: 8),
                                                       child: Text(
                                                         '${products![index].price} ر.س ',
                                                         style: TextStyle(
@@ -254,82 +243,43 @@ class _ResultSearchState extends State<ResultSearch> {
                                                         ),
                                                       ),
                                                     ),
-                                                    Container(
-                                                      margin: EdgeInsets.only(top: 10),
-                                                      padding: EdgeInsets.only(top: 0, left: 0, right: 0),
-                                                      child: Row(
-                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                        children: [
-                                                          products![index].quantity != 0
-                                                              ? GestureDetector(   onTap:(){
-                                                            addProduct(index);
+                                                    const SizedBox(height: 10,),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      children: [
+                                                        products![index].quantity != 0
+                                                            ? GestureDetector(   onTap:(){
+                                                          addProduct(index);
+                                                        },
+                                                                child: const AddToCartButton()
+                                                              )
+                                                            : Text(
+                                                              'المنتج غير متوفر',
+                                                              style: TextStyle(
+                                                                color: redColor,
+                                                                fontSize: size.width * 0.043,
+                                                                fontWeight: FontWeight.bold,
+                                                                fontFamily: 'Almarai',
+                                                              ),
+                                                            ),
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            products![index].favorite == true?
+                                                            setState(() {
+                                                              selectedIndexFav = products![index].id;
+                                                              print(selectedIndexFav);
+                                                              unFav();
+                                                            })  :setState(() {
+                                                              selectedIndexFav = products![index].id;
+                                                              print(selectedIndexFav);
+                                                              Fav();
+                                                            });
                                                           },
-                                                                  child: Container(
-                                                                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                                                                    decoration: BoxDecoration(
-                                                                      boxShadow: [
-                                                                        BoxShadow(
-                                                                          color: Colors.grey.withOpacity(0.07), // Shadow color
-                                                                          spreadRadius: 1, // How much the shadow should spread
-                                                                          blurRadius: 1, // How soft the shadow should be
-                                                                          offset: Offset(1, 1), // Changes position of shadow
-                                                                        ),
-                                                                      ],
-                                                                      border: Border.all(width: 1.0, color: Color(0x3D1D75B1)),
-                                                                      color: Colors.white,
-                                                                      borderRadius: BorderRadius.circular(20),
-                                                                    ),
-                                                                    child: Row(
-                                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                                      children: [
-                                                                        SvgPicture.asset(
-                                                                          'assets/images/shopping-cart.svg',
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width: 5,
-                                                                        ),
-                                                                        Text(
-                                                                          'أضف للعربة',
-                                                                          style: TextStyle(
-                                                                              fontFamily: 'Almarai',
-                                                                              fontWeight: FontWeight.w700,
-                                                                              fontSize: 14,
-                                                                              color: kPrimaryColor),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              : Container(
-                                                                  child: Text(
-                                                                    'المنتج غير متوفر',
-                                                                    style: TextStyle(
-                                                                      color: redColor,
-                                                                      fontSize: size.width * 0.043,
-                                                                      fontWeight: FontWeight.bold,
-                                                                      fontFamily: 'Almarai',
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                          GestureDetector(
-                                                            onTap: () {
-                                                              products![index].favorite == true?
-                                                              setState(() {
-                                                                selectedIndexFav = products![index].id;
-                                                                print(selectedIndexFav);
-                                                                unFav();
-                                                              })  :setState(() {
-                                                                selectedIndexFav = products![index].id;
-                                                                print(selectedIndexFav);
-                                                                Fav();
-                                                              });
-                                                            },
-                                                            child: products![index].favorite == true
-                                                                ? SvgPicture.asset('assets/images/favicon.svg', width: size.width * 0.063)
-                                                                : SvgPicture.asset('assets/images/fav.svg', width: size.width * 0.063),
-                                                          ),
-                                                        ],
-                                                      ),
+                                                          child: products![index].favorite == true
+                                                              ? SvgPicture.asset('assets/images/favicon.svg', width: size.width * 0.063)
+                                                              : SvgPicture.asset('assets/images/fav.svg', width: size.width * 0.063),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ],
                                                 ),
@@ -353,15 +303,7 @@ class _ResultSearchState extends State<ResultSearch> {
     );
   }
 
-  String getLimitedDescription(String description, int wordLimit) {
-    List<String> words = description.split(' ');
-    if (words.length <= wordLimit) {
-      return description;
-    } else {
-      List<String> limitedWords = words.sublist(0, wordLimit);
-      return limitedWords.join(' ');
-    }
-  }  void Fav() async {
+  void Fav() async {
     setState(() {
       progress = true;
     });
