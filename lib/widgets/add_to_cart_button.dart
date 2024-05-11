@@ -1,3 +1,4 @@
+import 'package:e_commerce/constant/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -9,7 +10,7 @@ class AddToCartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(9),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -32,9 +33,9 @@ class AddToCartButton extends StatelessWidget {
           const SizedBox(
             width: 7,
           ),
-          const Text(
+           Text(
             'أضف للعربة',
-            style: TextStyle(fontFamily: 'Almarai', fontWeight: FontWeight.w700, fontSize: 14, color: kPrimaryColor),
+            style: TextStyle(fontFamily: 'Almarai', fontWeight: FontWeight.w700, fontSize: getResponsiveFontSize(context, fontSize: 14), color: kPrimaryColor),
           ),
         ],
       ),

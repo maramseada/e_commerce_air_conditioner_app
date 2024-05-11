@@ -4,6 +4,7 @@ import '../../../../../../api/api.dart';
 import '../../../../../../api/cart_api.dart';
 import '../../../../../../api/fav_api.dart';
 import '../../../../../../models/ordermodel.dart';
+import '../../../../../models/accessor_model.dart';
 import 'acessory_details_state.dart';
 
 class AccessoryDetailsCubit extends Cubit<AccessoryDetailsState> {

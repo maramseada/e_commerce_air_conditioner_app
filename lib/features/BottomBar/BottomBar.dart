@@ -29,7 +29,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
     HomePage(),
     ShoppingPage(),
     ourProjectsPage(),
-    ourWorkPage(),
+    OurWorkPage(),
     morePage(),
   ];
   @override

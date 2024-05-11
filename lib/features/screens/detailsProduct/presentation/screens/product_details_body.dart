@@ -279,9 +279,8 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                           padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
                           child: GestureDetector(
                             onTap: () {
-                              print('amount product ${BlocProvider.of<ProductDetailsCubit>(context).amount}');
                               BlocProvider.of<CartProductDetailsCubit>(context).addToCart(
-                                id: widget.id.toString(), amount:  BlocProvider.of<ProductDetailsCubit>(context).amount,
+                                id: widget.id.toString(), amount:  BlocProvider.of<ProductDetailsCubit>(context).amount, context: context,
                               );
 
 

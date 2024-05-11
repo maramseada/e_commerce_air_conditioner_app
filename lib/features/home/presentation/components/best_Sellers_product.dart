@@ -186,7 +186,7 @@ class _BestSellersProductState extends State<BestSellersProduct> {
                           onTap: () {
                             BlocProvider.of<CartProductDetailsCubit>(context).addToCart(
                               id: widget.product!.id.toString(),
-                              amount: 1,
+                              amount: 1, context: context,
                             );
                           },
                           child:const AddToCartButton(),

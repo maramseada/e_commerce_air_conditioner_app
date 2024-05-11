@@ -36,13 +36,6 @@ class _BestSellersBodyState extends State<BestSellersBody> {
           ),
           itemCount: products!.length,
           itemBuilder: (context, index) {
-            // print('lengthhhhhh${products!.length}');
-            // BlocProvider.of<FavProductDetailsListCubit>(context).isFavProductList?.add(products![index].favorite!);
-            //
-            // BlocProvider.of<FavProductDetailsListCubit>(context).isFav(
-            //    favList: products![index].favorite!,
-            // );
-            // print('yallahhwyy${BlocProvider.of<FavProductDetailsListCubit>(context).isFavProductList}');
 
             return GestureDetector(
                 onTap: () {

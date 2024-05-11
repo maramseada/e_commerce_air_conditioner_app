@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../api/api.dart';
 import '../../../../constant/colors.dart';
-import '../../../../models/homeModel.dart';
 import '../../../../widgets/add_to_cart_button.dart';
 import '../../../screens/detailsProduct/presentation/controller/fav_product_cubit.dart';
 import 'package:e_commerce/constant/font_size.dart';
@@ -24,15 +23,10 @@ class BestSellersListViewProduct extends StatefulWidget {
 class _BestSellersListViewProductState extends State<BestSellersListViewProduct> {
   Api api = Api();
   bool isFavProduct = false;
-  late Future<Widget> _imageFuture;
-  late Future<Widget> _BrandimageFuture;
 
   @override
   void initState() {
     isFavProduct = widget.product!.favorite ?? false;
-    _imageFuture = api.ImageHome(widget.product!.image);
-    _BrandimageFuture = api.ImageHome(widget.product!.brand!.image);
-
     super.initState();
   }
 
@@ -53,10 +47,9 @@ class _BestSellersListViewProductState extends State<BestSellersListViewProduct>
             offset: const Offset(0, 3), // Changes position of shadow
           ),
         ],
-      ),
-      padding: EdgeInsets.symmetric(horizontal: size.width * 0.03, vertical: 5),
-      margin: EdgeInsets.symmetric(
-        horizontal: size.width * 0.02,
+      ),  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      margin: const EdgeInsets.only(
+        right: 10,
       ),
       child: Column(
         children: [
@@ -72,19 +65,12 @@ class _BestSellersListViewProductState extends State<BestSellersListViewProduct>
                   offset: const Offset(0, 5), // Changes position of shadow
                 ),
               ],
-            ),
-            child: FutureBuilder<Widget>(
-              future: _imageFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Container();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  return snapshot.data ?? const SizedBox();
-                }
-              },
-            ),
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: NetworkImage(
+                'https://albakr-ac.com/${widget.product!.image}',
+              )
+            )),
           ),
           Container(
               height: 60,
@@ -96,21 +82,16 @@ class _BestSellersListViewProductState extends State<BestSellersListViewProduct>
                 maxLines: 2,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: getResponsiveFontSize(context, fontSize: 16), fontFamily: 'Almarai'),
               )),
-          Container(
-            alignment: Alignment.centerRight,
+        Container(
             height: 30,
-            child: FutureBuilder<Widget>(
-              future: _BrandimageFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Container();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  return snapshot.data ?? const SizedBox();
-                }
-              },
-            ),
+           decoration: BoxDecoration(
+               image: DecorationImage(
+                   alignment: Alignment.bottomRight,
+                   image: NetworkImage(
+                     'https://albakr-ac.com/${widget.product?.brand?.image}',
+                   )
+               )
+           ),
           ),
           Container(
             alignment: Alignment.centerRight,
@@ -131,7 +112,7 @@ class _BestSellersListViewProductState extends State<BestSellersListViewProduct>
                       onTap: () {
                         BlocProvider.of<CartProductDetailsCubit>(context).addToCart(
                           id: widget.product!.id.toString(),
-                          amount: 1,
+                          amount: 1, context: context,
                         );
                       },
                       child: const AddToCartButton(),

@@ -1,4 +1,5 @@
 import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/widgets/add_to_cart_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,14 +9,14 @@ import '../../../models/works.dart';
 import '../request_prise/request_prise.dart';
 import 'component/works_details.dart';
 
-class ourWorkPage extends StatefulWidget {
-  const ourWorkPage({super.key});
+class OurWorkPage extends StatefulWidget {
+  const OurWorkPage({super.key});
 
   @override
-  State<ourWorkPage> createState() => _ourWorkPageState();
+  State<OurWorkPage> createState() => _OurWorkPageState();
 }
 
-class _ourWorkPageState extends State<ourWorkPage> {
+class _OurWorkPageState extends State<OurWorkPage> {
   final _api = WorksApi();
   List Data = [];
   @override
@@ -149,37 +150,7 @@ class _ourWorkPageState extends State<ourWorkPage> {
                                                 navigateTo(context, RequestPrice());
 
                                               },
-                                              child: Container(
-                                                width:  size.width * 0.58,
-                                                height: size.height*0.07,
-                                                decoration: ShapeDecoration(
-                                                  color: kPrimaryColorDark,
-                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(38)),
-                                                ),
-                                                child: Center(
-                                                  child:  Row(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                    children: [
-                                                      Icon(
-                                                        Icons.add,
-                                                        color: Colors.white,
-                                                        size: 25,
-                                                      ),
-                                                      SizedBox(width: size.width*0.03,),
-                                                      Text(
-                                                        'طلب عرض سعر',
-                                                        style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: size.width * 0.045,
-                                                          fontFamily: 'Almarai',
-                                                          fontWeight: FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
+                                              child:const AddToCartButton(),
                                             )
                                             )
                                           ],

@@ -11,6 +11,7 @@ import '../../../../../api/api.dart';
 import '../../../../../api/cart_api.dart';
 import '../../../../../api/fav_api.dart';
 import '../../../../../constant/colors.dart';
+import '../../../../../models/accessor_model.dart';
 import '../../../../../widgets/button.dart';
 import '../../../../home/presentation/controllers/accessory/acessory_details_cubit.dart';
 import '../../../../home/presentation/controllers/accessory/acessory_details_state.dart';

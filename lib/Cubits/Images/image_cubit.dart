@@ -6,22 +6,24 @@ import 'image_state.dart';
 
 class ImagesCubit extends Cubit<ImagesState> {
   final Api api;
-  Widget? imageWidget;
-  String? image;
+  bool _isClosed = false;
 
   ImagesCubit(this.api) : super(ImagesInitial());
 
   // Method to fetch image
   Future<void> getImage({required String image}) async {
+    if (_isClosed) return; // Check if cubit is closed
     try {
       emit(ImagesLoading()); // Emit loading state
-      imageWidget = await api.getImage(image); // Fetch image from API
+      final imageWidget = await api.getImage(image); // Fetch image from API
+      if (_isClosed) return; // Check if cubit is closed
       if (imageWidget != null) {
-        emit(ImagesSuccess(imageWidget!)); // Emit success state with image
+        emit(ImagesSuccess(imageWidget)); // Emit success state with image
       } else {
         emit(ImagesFailure(errMessage: 'Image not found')); // Emit failure state if image is null
       }
     } catch (e) {
+      if (_isClosed) return; // Check if cubit is closed
       emit(ImagesFailure(errMessage: 'Error: $e')); // Emit failure state if an error occurs
     }
   }
@@ -29,7 +31,7 @@ class ImagesCubit extends Cubit<ImagesState> {
   // Override close method to handle closure
   @override
   Future<void> close() {
-    imageWidget = null; // Clear imageWidget reference
+    _isClosed = true; // Mark cubit as closed
     return super.close(); // Call super method to close the cubit
   }
 }

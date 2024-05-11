@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../api/api.dart';
 import '../../models/profileData.dart';
-import '../../features/screens/editProfile/delete_account_sheet.dart';
+import '../../features/more/presentation/components/edit_profile/delete_account_sheet.dart';
 import 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {

@@ -14,9 +14,8 @@ class FavProductDetailsCubit extends Cubit<FavProductDetailsState> {
 
   FavouriteProductModel? isFavProduct;
   bool? isProductFav;
-  BestSellersCubit? bestSellersCubit; // Create an instance of BestSellersCubit
 
-  FavProductDetailsCubit({ this.api,  this.favApi, this.bestSellersCubit}) : super(FavProductDetailsInitial());
+  FavProductDetailsCubit({ this.api,  this.favApi }) : super(FavProductDetailsInitial());
 
   void loadInitialData() async {
     emit(FavProductDetailsLoading());
@@ -54,7 +53,7 @@ class FavProductDetailsCubit extends Cubit<FavProductDetailsState> {
       isFavProduct = await favApi?.unFavProduct(id);
       isProductFav = isFavProduct?.status;
 
-      emit(FavProductDetailsSuccess(product: isProductFav));
+      emit(FavProductDetailsSuccess(product: isFavProduct?.status));
     } on Exception catch (e) {
       emit(FavProductDetailsFailure(errMessage: 'error: $e'));
     }

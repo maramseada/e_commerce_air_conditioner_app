@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_commerce/models/ordermodel.dart';
 
+import '../../../../../models/accessor_model.dart';
 import '../../../../home/presentation/controllers/accessory/acessory_details_cubit.dart';
 import '../../../../home/presentation/controllers/accessory/acessory_details_state.dart';
 import '../screens/accessory_details_body.dart';

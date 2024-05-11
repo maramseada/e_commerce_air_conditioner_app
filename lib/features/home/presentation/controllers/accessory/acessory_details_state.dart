@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../../../../models/ordermodel.dart';
+import '../../../../../models/accessor_model.dart';
 
 @immutable
 abstract class AccessoryDetailsState {

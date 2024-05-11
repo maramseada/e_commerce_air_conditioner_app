@@ -1,8 +1,9 @@
+import 'package:e_commerce/features/home/presentation/controllers/Accessories/accessory_cubit.dart';
 import 'package:e_commerce/features/home/presentation/controllers/best_sellers/best_sellers_state.dart';
 import 'package:e_commerce/models/homeModel.dart';
 import 'package:e_commerce/features/home/presentation/components/best_sellers_list_view.dart';
 import 'package:e_commerce/features/home/presentation/components/carousel.dart';
-import 'package:e_commerce/features/home/presentation/components/sparePieces.dart';
+import 'package:e_commerce/features/home/presentation/components/accessories_list_view.dart';
 import 'package:e_commerce/features/home/presentation/screens/show_accessories.dart';
 import 'package:e_commerce/features/home/presentation/screens/show_bestsellers.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class _HomeBodyState extends State<HomeBody> {
                 HomeAppBar(
                   home: widget.home,
                 ),
-                const Center(
+                  Center(
                   child: CarouselScreen(),
                 ),
                 Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: CategoryGridView(category: widget.home!.categories)),
@@ -108,10 +109,10 @@ class _HomeBodyState extends State<HomeBody> {
                     ],
                   ),
                 ),
-          BestSeller(),
+          const BestSeller(),
 
           Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.025, vertical: size.height * 0.03),
+                  padding: EdgeInsets.only(right: 15, bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -141,12 +142,13 @@ class _HomeBodyState extends State<HomeBody> {
                       ),
                       TextButton(
                         onPressed: () {
-                          navigateTo(
-                            context,
-                            ShowMoreAccessories(
-                              productName: 'فتحات التكييف الألومنيوم',
-                            ),
-                          );
+                          BlocProvider.of<AccessoryCubit>(context).getAccessory();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ShowMoreAccessories(
+                                    productName: 'فتحات التكييف الألومنيوم',
+                                  ),)).then((_) => setState(() {}));
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -171,10 +173,7 @@ class _HomeBodyState extends State<HomeBody> {
                     ],
                   ),
                 ),
-          Padding(
-                  padding: EdgeInsets.only(right: size.width * 0.018),
-                  child: SparePieceScreen(),
-                ),
+          SparePieceScreen(),
               ]
             : [
                 const Center(

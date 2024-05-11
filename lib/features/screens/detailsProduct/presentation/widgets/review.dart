@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../constant/font_size.dart';
+import '../../../../../models/accessor_model.dart';
 
 
 class ReviewProduct extends StatelessWidget {

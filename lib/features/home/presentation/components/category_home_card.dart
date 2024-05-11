@@ -34,18 +34,17 @@ class _CategoryHomeCardState extends State<CategoryHomeCard> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            FutureBuilder<Widget>(
-              future: _imageFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Container();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  return snapshot.data ?? const SizedBox();
-                }
-              },
+            Container(
+              height: 70,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+              image:      NetworkImage(
+                  'https://albakr-ac.com/${widget.category![widget.index].image}',
+                    )
+                )
+              )
             ),
+
 
             const SizedBox(
               height: 15,

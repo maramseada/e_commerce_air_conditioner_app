@@ -10,6 +10,7 @@ import 'package:e_commerce/models/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/accessor_model.dart';
 import '../models/brandModel.dart';
 import '../models/homeModel.dart';
 import '../models/settingsModel.dart';
