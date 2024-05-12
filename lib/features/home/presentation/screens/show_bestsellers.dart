@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../models/ordermodel.dart';
 
-import '../../../screens/detailsProduct/presentation/controller/fav_product_cubit.dart';
+import '../../../detailsProduct/presentation/controller/fav_product_cubit.dart';
 import '../components/best_sellers_body.dart';
 import '../controllers/best_sellers/best_sellers_cubit.dart';
 import '../controllers/best_sellers/best_sellers_state.dart';

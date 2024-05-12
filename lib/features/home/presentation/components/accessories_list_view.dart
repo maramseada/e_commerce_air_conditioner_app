@@ -11,13 +11,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../api/api.dart';
 import '../../../../../api/cart_api.dart';
 import '../../../../../api/fav_api.dart';
-import '../../../../../constant/colors.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import '../../../../../models/accessor_model.dart';
-import '../../../../../models/homeModel.dart';
 
-import '../../../../widgets/add_to_cart_button.dart';
-import '../../../screens/detailsProduct/presentation/components/accessory_details.dart';
+import '../../../detailsProduct/presentation/components/accessory_details.dart';
 import '../controllers/Accessories/accessory_cubit.dart';
 import '../controllers/accessory/acessory_details_cubit.dart';
 

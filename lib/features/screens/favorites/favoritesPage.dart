@@ -15,11 +15,11 @@ import '../../../models/fav_model.dart';
 import '../../../models/ordermodel.dart';
 import '../../BottomBar/BottomBar.dart';
 import '../../home/presentation/controllers/accessory/acessory_details_cubit.dart';
-import '../detailsProduct/presentation/components/accessory_details.dart';
-import '../detailsProduct/presentation/controller/fav_product_cubit.dart';
-import '../detailsProduct/presentation/controller/product/product_details_cubit.dart';
-import '../detailsProduct/presentation/screens/accessory_details_body.dart';
-import '../detailsProduct/presentation/components/productDetails.dart';
+import '../../detailsProduct/presentation/components/accessory_details.dart';
+import '../../detailsProduct/presentation/controller/fav_product_cubit.dart';
+import '../../detailsProduct/presentation/controller/product/product_details_cubit.dart';
+import '../../detailsProduct/presentation/screens/accessory_details_body.dart';
+import '../../detailsProduct/presentation/components/productDetails.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});

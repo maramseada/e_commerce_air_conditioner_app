@@ -12,9 +12,9 @@ import '../../../api/fav_api.dart';
 import '../../../constant/colors.dart';
 import '../../../constant/navigator.dart';
 import '../../../models/ordermodel.dart';
-import '../detailsProduct/presentation/components/productDetails.dart';
-import '../detailsProduct/presentation/controller/fav_product_cubit.dart';
-import '../detailsProduct/presentation/controller/product/product_details_cubit.dart';
+import '../../detailsProduct/presentation/components/productDetails.dart';
+import '../../detailsProduct/presentation/controller/fav_product_cubit.dart';
+import '../../detailsProduct/presentation/controller/product/product_details_cubit.dart';
 import '../request_prise/request_prise.dart';
 import 'filter.dart';
 

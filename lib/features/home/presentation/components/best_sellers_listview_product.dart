@@ -1,15 +1,16 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/models/ordermodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../api/api.dart';
 import '../../../../constant/colors.dart';
 import '../../../../widgets/add_to_cart_button.dart';
-import '../../../screens/detailsProduct/presentation/controller/fav_product_cubit.dart';
+import '../../../detailsProduct/presentation/controller/cart_product_cubit.dart';
+import '../../../detailsProduct/presentation/controller/fav_product_cubit.dart';
+import '../../../detailsProduct/presentation/controller/product/product_details_state.dart';
 import 'package:e_commerce/constant/font_size.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../screens/detailsProduct/presentation/controller/cart_product_cubit.dart';
-import '../../../screens/detailsProduct/presentation/controller/product/product_details_state.dart';
 import '../controllers/best_sellers/best_sellers_cubit.dart';
 
 class BestSellersListViewProduct extends StatefulWidget {
@@ -65,12 +66,11 @@ class _BestSellersListViewProductState extends State<BestSellersListViewProduct>
                   offset: const Offset(0, 5), // Changes position of shadow
                 ),
               ],
-            image: DecorationImage(
-              fit: BoxFit.fill,
-              image: NetworkImage(
-                'https://albakr-ac.com/${widget.product!.image}',
-              )
-            )),
+          ),
+            child: CachedNetworkImage(imageUrl: 'https://albakr-ac.com/${widget.product!.image}',
+                fit: BoxFit.fill,
+                errorWidget: (context, url, error)=> const Icon(Icons.access_alarm)
+            ),
           ),
           Container(
               height: 60,
@@ -83,16 +83,13 @@ class _BestSellersListViewProductState extends State<BestSellersListViewProduct>
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: getResponsiveFontSize(context, fontSize: 16), fontFamily: 'Almarai'),
               )),
         Container(
-            height: 30,
-           decoration: BoxDecoration(
-               image: DecorationImage(
-                   alignment: Alignment.bottomRight,
-                   image: NetworkImage(
-                     'https://albakr-ac.com/${widget.product?.brand?.image}',
-                   )
-               )
-           ),
+alignment: Alignment.centerRight,            height: 30,
+          child: CachedNetworkImage(imageUrl: 'https://albakr-ac.com/${widget.product?.brand?.image}',
+            //  fit: BoxFit.fill,
+              errorWidget: (context, url, error)=> const SizedBox(),
           ),
+        ),
+
           Container(
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.only(top: 5),

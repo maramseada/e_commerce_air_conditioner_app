@@ -27,15 +27,7 @@ class ProductDetailsBody extends StatefulWidget {
 
 class _ProductDetailsBodyState extends State<ProductDetailsBody> {
   String? image;
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // Initialize with the first image
-  //   if (widget.product!.images.isNotEmpty) {
-  //     // Fetch the first image for the initial widget
-  //   }
-  // }
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/screens/detailsProduct/presentation/components/productDetails.dart';
+import 'package:e_commerce/features/detailsProduct/presentation/components/productDetails.dart';
 import 'package:e_commerce/constant/navigator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +18,8 @@ import '../../../../../models/homeModel.dart';
 import '../../../../../models/ordermodel.dart';
 import '../../../../../widgets/checkbox.dart';
 
-import '../../../screens/detailsProduct/presentation/controller/fav_product_cubit.dart';
-import '../../../screens/detailsProduct/presentation/controller/product/product_details_cubit.dart';
+import '../../../detailsProduct/presentation/controller/fav_product_cubit.dart';
+import '../../../detailsProduct/presentation/controller/product/product_details_cubit.dart';
 import '../../../screens/filter/filter.dart';
 import '../../../../widgets/floating_button_ask_price.dart';
 

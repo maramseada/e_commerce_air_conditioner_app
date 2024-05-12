@@ -28,6 +28,7 @@ class FavAccessoryCubit extends Cubit<FavAccessoryState> {
     emit(FavAccessoryLoading());
     try {
       isProductFav = await favApi?.isFav(id.toString());
+
       emit(FavAccessorySuccess(product: isProductFav));
     } catch (e) {
       emit(FavAccessoryFailure(errMessage: 'Error favoriting product: $e'));
@@ -37,7 +38,8 @@ class FavAccessoryCubit extends Cubit<FavAccessoryState> {
   void favAccessory({required int id}) async {
     try {
       isFavProduct = await favApi?.favAccessory(id);
-      emit(FavAccessorySuccess(product: isFavProduct?.status));
+      isProductFav = isFavProduct?.status;
+      emit(FavAccessorySuccess(product: isProductFav));
     } catch (e) {
       emit(FavAccessoryFailure(errMessage: 'Error favoriting product: $e'));
     }

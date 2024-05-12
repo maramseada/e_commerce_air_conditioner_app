@@ -7,19 +7,13 @@ import '../controller/product/product_details_state.dart';
 import '../screens/product_details_body.dart';
 import 'favourite_icon_product.dart';
 
-class ProductDetails extends StatefulWidget {
+class ProductDetails extends StatelessWidget {
   final int id;
 
   const ProductDetails({
     super.key,
     required this.id,
   });
-
-  @override
-  _ProductDetailsState createState() => _ProductDetailsState();
-}
-
-class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +32,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           ),
           actions: [
             FavoriteIconBloc(
-              id: widget.id,
+              id: id,
             )
           ],
         ),
@@ -50,7 +44,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               final product = state.product;
               return ProductDetailsBody(
                 product: product,
-                id: widget.id,
+                id: id,
               );
             } else {
               return const Center(

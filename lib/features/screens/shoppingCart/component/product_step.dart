@@ -8,7 +8,7 @@ import '../../../../api/cart_api.dart';
 import '../../../../constant/colors.dart';
 import '../../../../constant/images.dart';
 import '../../../../models/cart_model.dart';
-import '../../detailsProduct/presentation/widgets/Radio.dart';
+import '../../../detailsProduct/presentation/widgets/Radio.dart';
 
 class ProductStep extends StatefulWidget {
   const ProductStep({

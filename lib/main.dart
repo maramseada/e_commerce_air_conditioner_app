@@ -1,6 +1,3 @@
-import 'package:e_commerce/features/screens/detailsProduct/presentation/controller/cart_product_cubit.dart';
-import 'package:e_commerce/features/screens/detailsProduct/presentation/controller/fav_product_cubit.dart';
-import 'package:e_commerce/features/screens/detailsProduct/presentation/controller/product/product_details_cubit.dart';
 import 'package:e_commerce/Cubits/Profile/profile_cubit.dart';
 import 'package:e_commerce/api/api.dart';
 import 'package:e_commerce/features/BottomBar/BottomBar.dart';
@@ -20,6 +17,9 @@ import 'Cubits/Images/image_cubit.dart';
 import 'api/cart_api.dart';
 import 'api/fav_api.dart';
 import 'core/utiles/simple_bloc_observer.dart';
+import 'features/detailsProduct/presentation/controller/cart_product_cubit.dart';
+import 'features/detailsProduct/presentation/controller/fav_product_cubit.dart';
+import 'features/detailsProduct/presentation/controller/product/product_details_cubit.dart';
 import 'features/home/presentation/controllers/Accessories/accessory_cubit.dart';
 import 'features/home/presentation/controllers/accessory/acessory_details_cubit.dart';
 import 'features/home/presentation/controllers/best_sellers/best_sellers_cubit.dart';

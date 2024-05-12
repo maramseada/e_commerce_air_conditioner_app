@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/screens/detailsProduct/presentation/controller/product/product_details_state.dart';
+import 'package:e_commerce/features/detailsProduct/presentation/controller/product/product_details_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../api/api.dart';
@@ -6,7 +6,6 @@ import '../../../../../api/cart_api.dart';
 import '../../../../../api/fav_api.dart';
 import '../../../../../models/favourite_product_model.dart';
 import '../../../../../models/ordermodel.dart';
-import '../../../../home/presentation/controllers/best_sellers/best_sellers_cubit.dart';
 
 class FavProductDetailsCubit extends Cubit<FavProductDetailsState> {
   Api? api;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../api/cart_api.dart';
 import '../../../../models/cart_model.dart';
-import '../../detailsProduct/presentation/widgets/Radio.dart';
+import '../../../detailsProduct/presentation/widgets/Radio.dart';
 class ProductsCart extends StatefulWidget {
 
   int amountProduct ;

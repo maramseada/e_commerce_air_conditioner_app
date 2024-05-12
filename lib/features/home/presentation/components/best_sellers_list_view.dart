@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../models/ordermodel.dart';
-import '../../../screens/detailsProduct/presentation/components/productDetails.dart';
-import '../../../screens/detailsProduct/presentation/controller/fav_product_cubit.dart';
-import '../../../screens/detailsProduct/presentation/controller/product/product_details_cubit.dart';
+import '../../../detailsProduct/presentation/components/productDetails.dart';
+import '../../../detailsProduct/presentation/controller/fav_product_cubit.dart';
+import '../../../detailsProduct/presentation/controller/product/product_details_cubit.dart';
 import '../controllers/best_sellers/best_sellers_cubit.dart';
 import '../controllers/best_sellers/best_sellers_state.dart';
 import 'best_sellers_listview_product.dart';

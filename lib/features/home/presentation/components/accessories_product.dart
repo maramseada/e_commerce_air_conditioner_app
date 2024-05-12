@@ -9,7 +9,7 @@ import '../../../../api/api.dart';
 import '../../../../constant/colors.dart';
 import '../../../../models/accessor_model.dart';
 import '../../../../widgets/add_to_cart_button.dart';
-import '../../../screens/detailsProduct/presentation/controller/cart_product_cubit.dart';
+import '../../../detailsProduct/presentation/controller/cart_product_cubit.dart';
 import '../controllers/fav_accessory/fav_accessory_cubit.dart';
 
 class AccessoriesProduct extends StatefulWidget {

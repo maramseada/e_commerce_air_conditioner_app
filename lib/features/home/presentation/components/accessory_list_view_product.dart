@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,7 +8,7 @@ import '../../../../constant/colors.dart';
 import '../../../../constant/font_size.dart';
 import '../../../../models/accessor_model.dart';
 import '../../../../widgets/add_to_cart_button.dart';
-import '../../../screens/detailsProduct/presentation/controller/cart_product_cubit.dart';
+import '../../../detailsProduct/presentation/controller/cart_product_cubit.dart';
 import '../controllers/Accessories/accessory_cubit.dart';
 import '../controllers/fav_accessory/fav_accessory_cubit.dart';
 import '../controllers/fav_accessory/fav_accessory_state.dart';
@@ -64,12 +65,7 @@ class _AccessoryListViewProductState extends State<AccessoryListViewProduct> {
                 height: 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage(
-                      'https://albakr-ac.com/${widget.product!.image}'
-                    )
-                  ),
+            
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.05), // Shadow color
@@ -79,7 +75,12 @@ class _AccessoryListViewProductState extends State<AccessoryListViewProduct> {
                     ),
                   ],
                 ),
+child: CachedNetworkImage(
+    fit: BoxFit.fill,
+    imageUrl: 'https://albakr-ac.com/${widget.product!.image}',
 
+  errorWidget: (context, url, error)=> const Icon(Icons.access_alarm)
+),
               ),
               Container(
                   height: 60,

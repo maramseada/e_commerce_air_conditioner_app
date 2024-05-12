@@ -7,7 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../api/api.dart';
 import '../../../../constant/colors.dart';
 import '../../../../models/accessor_model.dart';
-import '../../../screens/detailsProduct/presentation/components/accessory_details.dart';
+import '../../../detailsProduct/presentation/components/accessory_details.dart';
 import '../controllers/accessory/acessory_details_cubit.dart';
 import 'accessories_product.dart';
 

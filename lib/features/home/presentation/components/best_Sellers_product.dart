@@ -10,9 +10,9 @@ import '../../../../../constant/colors.dart';
 import '../../../../../models/ordermodel.dart';
 
 import '../../../../widgets/add_to_cart_button.dart';
-import '../../../screens/detailsProduct/presentation/controller/cart_product_cubit.dart';
-import '../../../screens/detailsProduct/presentation/controller/fav_product_cubit.dart';
-import '../../../screens/detailsProduct/presentation/controller/product/product_details_state.dart';
+import '../../../detailsProduct/presentation/controller/cart_product_cubit.dart';
+import '../../../detailsProduct/presentation/controller/fav_product_cubit.dart';
+import '../../../detailsProduct/presentation/controller/product/product_details_state.dart';
 import '../controllers/best_sellers/best_sellers_cubit.dart';
 
 class BestSellersProduct extends StatefulWidget {

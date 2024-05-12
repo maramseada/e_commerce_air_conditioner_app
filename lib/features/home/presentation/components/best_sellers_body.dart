@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../models/ordermodel.dart';
 
-import '../../../screens/detailsProduct/presentation/components/productDetails.dart';
-import '../../../screens/detailsProduct/presentation/controller/fav_product_cubit.dart';
-import '../../../screens/detailsProduct/presentation/controller/product/product_details_cubit.dart';
-import '../controllers/fav_products_list/fav_products_list_cubit.dart';
+import '../../../detailsProduct/presentation/components/productDetails.dart';
+import '../../../detailsProduct/presentation/controller/fav_product_cubit.dart';
+import '../../../detailsProduct/presentation/controller/product/product_details_cubit.dart';
+
 import '../screens/show_bestsellers.dart';
 import 'best_Sellers_product.dart';
 
