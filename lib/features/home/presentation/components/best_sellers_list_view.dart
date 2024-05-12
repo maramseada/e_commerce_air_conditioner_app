@@ -54,7 +54,8 @@ class _BestSellerState extends State<BestSeller> {
                                 MaterialPageRoute(
                                     builder: (context) => ProductDetails(
                                           id: products![index].id,
-                                        ))).then((_) => setState(() {}));
+                                        ))).then((_) =>                           BlocProvider.of<BestSellersCubit>(context).getBestSellersFav()
+                            );
                           },
                           child: Column(
                             children: [

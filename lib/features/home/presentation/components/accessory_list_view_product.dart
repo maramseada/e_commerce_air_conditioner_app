@@ -14,7 +14,7 @@ import '../controllers/fav_accessory/fav_accessory_cubit.dart';
 import '../controllers/fav_accessory/fav_accessory_state.dart';
 
 class AccessoryListViewProduct extends StatefulWidget {
-final  AccessoryModel? product;
+  final AccessoryModel? product;
 
   const AccessoryListViewProduct({super.key, required this.product});
 
@@ -24,14 +24,9 @@ final  AccessoryModel? product;
 
 class _AccessoryListViewProductState extends State<AccessoryListViewProduct> {
   Api api = Api();
-  bool isFavProduct = false;
+  late bool isFavProduct;
 
   @override
-  void initState() {
-    isFavProduct = widget.product!.favorite ?? false;
-
-    super.initState();
-  } @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final cubit = BlocProvider.of<FavAccessoryCubit>(context);
@@ -65,7 +60,6 @@ class _AccessoryListViewProductState extends State<AccessoryListViewProduct> {
                 height: 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-            
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.05), // Shadow color
@@ -75,12 +69,10 @@ class _AccessoryListViewProductState extends State<AccessoryListViewProduct> {
                     ),
                   ],
                 ),
-child: CachedNetworkImage(
-    fit: BoxFit.fill,
-    imageUrl: 'https://albakr-ac.com/${widget.product!.image}',
-
-  errorWidget: (context, url, error)=> const Icon(Icons.access_alarm)
-),
+                child: CachedNetworkImage(
+                    fit: BoxFit.fill,
+                    imageUrl: 'https://albakr-ac.com/${widget.product!.image}',
+                    errorWidget: (context, url, error) => const Icon(Icons.access_alarm)),
               ),
               Container(
                   height: 60,
@@ -88,15 +80,12 @@ child: CachedNetworkImage(
                   child: Text(
                     widget.product!.name,
                     textAlign: TextAlign.right,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: getResponsiveFontSize(context, fontSize: 16),
-                        fontFamily: 'Almarai'),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: getResponsiveFontSize(context, fontSize: 16), fontFamily: 'Almarai'),
                   )),
               Container(
                 alignment: Alignment.centerRight,
                 child: (Text(
-                  '${ widget.product!.price} ر.س ',
+                  '${widget.product!.price} ر.س ',
                   style: TextStyle(
                       fontSize: getResponsiveFontSize(context, fontSize: 16),
                       fontWeight: FontWeight.bold,
@@ -111,23 +100,24 @@ child: CachedNetworkImage(
                   children: [
                     widget.product!.quantity != 0
                         ? GestureDetector(
-                      onTap: () {
-                        BlocProvider.of<CartProductDetailsCubit>(context).addToCartAccessory(
-                          id: widget.product!.id.toString(),
-                          amount: 1, context: context,
-                        );
-                      },
-                      child: const AddToCartButton(),
-                    )
+                            onTap: () {
+                              BlocProvider.of<CartProductDetailsCubit>(context).addToCartAccessory(
+                                id: widget.product!.id.toString(),
+                                amount: 1,
+                                context: context,
+                              );
+                            },
+                            child: const AddToCartButton(),
+                          )
                         : Text(
-                      'المنتج غير متوفر',
-                      style: TextStyle(
-                        color: redColor,
-                        fontSize: size.width * 0.043,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Almarai',
-                      ),
-                    ),
+                            'المنتج غير متوفر',
+                            style: TextStyle(
+                              color: redColor,
+                              fontSize: size.width * 0.043,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Almarai',
+                            ),
+                          ),
                     BlocConsumer<FavAccessoryCubit, FavAccessoryState>(
                       builder: (context, state) {
                         if (state is FavAccessoryLoading) {
@@ -137,19 +127,16 @@ child: CachedNetworkImage(
                           return IconButton(
                               onPressed: () {
                                 if (isFavProduct) {
-                                  cubit.unFavAccessory(id: widget.product!.id);
+                                  cubit.unFavAccessory(id: widget.product!.id, context: context);
                                   BlocProvider.of<AccessoryCubit>(context).getAccessoryFav();
-
                                 } else {
-                                  cubit.favAccessory(id: widget.product!.id);
+                                  cubit.favAccessory(id: widget.product!.id, context: context);
                                   BlocProvider.of<AccessoryCubit>(context).getAccessoryFav();
-
                                 }
                               },
                               icon: isFavProduct
                                   ? SvgPicture.asset('assets/images/favicon.svg', width: 27)
-                                  :SvgPicture.asset('assets/images/fav.svg', width: 27)
-                          );
+                                  : SvgPicture.asset('assets/images/fav.svg', width: 27));
                         } else if (state is FavAccessoryFailure) {
                           return SvgPicture.asset('assets/images/favicon.svg', width: 27);
                         } else {
@@ -160,7 +147,6 @@ child: CachedNetworkImage(
                         setState(() {
                           isFavProduct = widget.product!.favorite ?? false;
                         });
-
                       },
                     )
                   ],
@@ -169,7 +155,6 @@ child: CachedNetworkImage(
             ],
           ),
         ),
-
       ],
     );
   }

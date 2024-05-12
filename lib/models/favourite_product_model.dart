@@ -10,3 +10,17 @@ class FavouriteProductModel {
     );
   }
 }
+
+
+class FavouriteAccessoryModel {
+  String id;
+  bool status;
+  FavouriteAccessoryModel({required this.id, required this.status});
+
+  factory FavouriteAccessoryModel.fromJson(Map<String, dynamic> json) {
+    return FavouriteAccessoryModel(
+      id: json['accessory_id'],
+      status: json['status'] ?? false,
+    );
+  }
+}

@@ -42,7 +42,7 @@ class _HomeBodyState extends State<HomeBody> {
                 HomeAppBar(
                   home: widget.home,
                 ),
-                  Center(
+                  const Center(
                   child: CarouselScreen(),
                 ),
                 Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: CategoryGridView(category: widget.home!.categories)),

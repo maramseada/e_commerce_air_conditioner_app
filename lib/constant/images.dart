@@ -15,6 +15,7 @@ const String filter = 'assets/images/filter-edit_linear.png';
 const String noFoundSearch = 'assets/images/no_found_search.png';
 const String searchGray = 'assets/images/search_gray.png';
 const String cart = 'assets/images/cart.png';
+const String cartIcon = 'assets/images/shopping-cart.svg';
 const String arrowL = 'assets/images/arrow-left.png';
 const String circleCheck = 'assets/images/tick-circle_bulk.png';
 

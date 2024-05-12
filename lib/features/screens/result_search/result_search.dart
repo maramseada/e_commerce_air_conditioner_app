@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/widgets/add_to_cart_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -166,22 +167,10 @@ class _ResultSearchState extends State<ResultSearch> {
                                                           ),
                                                         ],
                                                       ),
-                                                      child: FutureBuilder<Widget>(
-                                                          future: _api.ImageHome(products![index].image),
-                                                          builder: (context, snapshot) {
-                                                            if (snapshot.connectionState == ConnectionState.waiting) {
-                                                              return Container();
-                                                            } else if (snapshot.hasError) {
-                                                              return Text('Error: ${snapshot.error}');
-                                                            } else {
-                                                              final imageWidget = snapshot.data;
-                                                              return imageWidget != null
-                                                                  ? SizedBox(
-                                                                      child: imageWidget,
-                                                                    )
-                                                                  : SizedBox(); //
-                                                            }
-                                                          }),
+                                                      child: CachedNetworkImage(
+                                                          fit: BoxFit.fill,
+                                                          imageUrl: 'https://albakr-ac.com/${products![index].image}',
+                                                          errorWidget: (context, url, error) => const Icon(Icons.access_alarm))
                                                     ),
                                                     Container(
                                                       height: 60,

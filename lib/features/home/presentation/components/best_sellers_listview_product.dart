@@ -23,13 +23,8 @@ class BestSellersListViewProduct extends StatefulWidget {
 
 class _BestSellersListViewProductState extends State<BestSellersListViewProduct> {
   Api api = Api();
-  bool isFavProduct = false;
+ late bool isFavProduct ;
 
-  @override
-  void initState() {
-    isFavProduct = widget.product!.favorite ?? false;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

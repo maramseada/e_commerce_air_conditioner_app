@@ -70,6 +70,36 @@ class FavApi {
       throw Exception('Error fetching profile data');
     }
   }
+  Future isFavAccessory(String id ) async { // Change return type to Future<FavModel>
+    bool data;
+    final url = '$baseUrl/accessories-details/$id';
+    try {
+      final dio = Dio();
+
+      final token = await getString('token');
+      if (token != null) {
+        dio.options.headers['Authorization'] = 'Bearer $token';
+      }
+
+      final response = await dio.get(url);
+      if (response.statusCode == 200 ||response.statusCode == 422 )  {
+        final responseData = response.data;
+        if (responseData != null) {
+          // Parse JSON response and create FavModel instance
+          data = responseData['data']['favorite'];
+          return data; // Return parsed data
+        } else {
+          throw Exception('Invalid response or status code');
+        }
+      } else {
+        throw Exception('Failed to fetch profile data (${response.statusCode})');
+      }
+    } catch (e, stackTrace) {
+      print('Error fetching profile data: $e');
+      print(stackTrace);
+      throw Exception('Error fetching profile data');
+    }
+  }
 
   Future<Widget> ImageHome(String image) async {
     final url = 'https://albakr-ac.com/$image'; // Assuming $baseUrl already includes the protocol (http:// or https://)
@@ -194,7 +224,7 @@ class FavApi {
       int id,
       ) async {
     final url = '$baseUrl/favourite/accessory';
-    Map<String, dynamic> data;
+    FavouriteAccessoryModel data;
     try {
       final dio = Dio();
 
@@ -204,7 +234,7 @@ class FavApi {
       }
 
       FormData formData = FormData.fromMap({
-        'accessory_id': id,
+        'accessory_id': '$id',
       });
       final response = await dio.post(url, data: formData);
 
@@ -213,7 +243,8 @@ class FavApi {
       if (response.statusCode == 200 ||response.statusCode == 422 )  {
         final responseData = response.data;
         if (responseData != null) {
-          data = responseData['errors'][0];
+          data = FavouriteAccessoryModel.fromJson(responseData['data']);
+
           print(data);// Ret*urn parsed data
           return data;
         } }else if (response.statusCode == 422) {
@@ -228,6 +259,8 @@ class FavApi {
       int id,
       ) async {
     final url = '$baseUrl/unFavourite/accessory';
+    FavouriteAccessoryModel data;
+
     try {
       final dio = Dio();
 
@@ -237,7 +270,7 @@ class FavApi {
       }
 
       FormData formData = FormData.fromMap({
-        'accessory_id': id,
+        'accessory_id': '$id',
       });
       final response = await dio.post(url, data: formData);
 
@@ -245,6 +278,11 @@ class FavApi {
 
       if (response.statusCode == 200 ||response.statusCode == 422 )  {
         final responseData = response.data;
+        if (responseData != null) {
+          data = FavouriteAccessoryModel.fromJson(responseData['data']);
+          print(responseData['message']);// Ret*urn parsed data
+          return data;
+        }
       }
     } catch (e, stackTrace) {
       print('========== Error: $e');

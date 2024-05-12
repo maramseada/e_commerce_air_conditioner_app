@@ -69,7 +69,8 @@ class _SparePieceScreenState extends State<SparePieceScreen> {
                                 MaterialPageRoute(
                                     builder: (context) => AccessoryDetails(
                                       id: products![index].id,
-                                    ))).then((_) => setState(() {}));
+                                    ))).then((_) =>                                   BlocProvider.of<AccessoryCubit>(context).getAccessoryFav()
+                            );
                           },
                           child: AccessoryListViewProduct(product:  BlocProvider.of<AccessoryCubit>(context).products?[index]));
                     },

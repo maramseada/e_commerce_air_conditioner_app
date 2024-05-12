@@ -41,37 +41,7 @@ class AccessoryDetailsCubit extends Cubit<AccessoryDetailsState> {
     }
   }
 
-  void favProduct({required int id}) async {
-    print ('idddddddd$id');
-    emit(AccessoryDetailsLoading());
-    try {
-      print ('idddsafdddddd$id');
-      await favApi.favAccessory(id);
-      product = await api.accessoryDetails(id);
 
-      emit(AccessoryDetailsSuccess(product: product)); // Update with the latest product state
-    } catch (e) {
-      print ('idaezrghddddddd$id');
-      emit(AccessoryDetailsFailure(errMessage: 'Error favoriting product: $e'));
-    }
-  }
-
-  void unFavProduct({required int id}) async {
-    print ('idddddddd$id');
-
-    emit(AccessoryDetailsLoading());
-    try {
-      print ('idddsafdddddd$id');
-
-      await favApi.unFavAccessory(id);
-      product = await api.accessoryDetails(id);
-      emit(AccessoryDetailsSuccess(product: product)); // Update with the latest product state
-    } on Exception catch (e) {
-      print ('idaezrghddddddd$id');
-
-      emit(AccessoryDetailsFailure(errMessage: 'error: $e'));
-    }
-  }
 
   void addToCart({
     required String id,

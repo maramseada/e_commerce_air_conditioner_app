@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/features/detailsProduct/presentation/components/productDetails.dart';
 import 'package:e_commerce/constant/navigator.dart';
 import 'package:flutter/cupertino.dart';
@@ -202,22 +203,10 @@ class _TypesDetailsState extends State<TypesDetails> {
                                                     ),
                                                   ],
                                                 ),
-                                                child: FutureBuilder<Widget>(
-                                                    future: _api.ImageHome(products![index].image),
-                                                    builder: (context, snapshot) {
-                                                      if (snapshot.connectionState == ConnectionState.waiting) {
-                                                        return Container();
-                                                      } else if (snapshot.hasError) {
-                                                        return Text('Error: ${snapshot.error}');
-                                                      } else {
-                                                        final imageWidget = snapshot.data;
-                                                        return imageWidget != null
-                                                            ? SizedBox(
-                                                                child: imageWidget,
-                                                              )
-                                                            : SizedBox(); //
-                                                      }
-                                                    }),
+                                                child: CachedNetworkImage(
+                                                    fit: BoxFit.fill,
+                                                    imageUrl: 'https://albakr-ac.com/${products![index].image}',
+                                                    errorWidget: (context, url, error) => const Icon(Icons.access_alarm)),
                                               ),
                                               Container(
                                                 height: 60,
@@ -233,29 +222,16 @@ class _TypesDetailsState extends State<TypesDetails> {
                                                 ),
                                               ),
                                               products![index].brand != null
-                                                  ? Container(
+                                                  ? SizedBox(
                                                       //   width: size.width * 0.2,
                                                       height: 30,
-                                                      child: FutureBuilder<Widget>(
-                                                        future: _api.ImageHome(products![index].brand!.image),
-                                                        builder: (context, snapshot) {
-                                                          if (snapshot.connectionState == ConnectionState.waiting) {
-                                                            return Container();
-                                                          } else if (snapshot.hasError) {
-                                                            return Text('Error: ${snapshot.error}');
-                                                          } else {
-                                                            final imageWidget = snapshot.data;
-                                                            return imageWidget != null
-                                                                ? Row(
-                                                                    mainAxisAlignment: MainAxisAlignment.start, // Align the row to the end (right)
-                                                                    children: [
-                                                                      imageWidget,
-                                                                    ],
-                                                                  )
-                                                                : SizedBox(); //
-                                                          }
-                                                        },
-                                                      ),
+
+                                                      child:CachedNetworkImage(
+                                                          fit: BoxFit.fill,
+                                                          imageUrl: 'https://albakr-ac.com/${products![index].brand!.image}',
+                                                          errorWidget: (context, url, error) => const Icon(Icons.access_alarm)),
+
+
                                                     )
                                                   : Container(),
                                               Row(
@@ -347,7 +323,7 @@ class _TypesDetailsState extends State<TypesDetails> {
                                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                                 children: [
                                                                   SvgPicture.asset(
-                                                                    'assets/images/shopping-cart.svg',
+                                                                   cartIcon
                                                                   ),
                                                                   const SizedBox(
                                                                     width: 5,

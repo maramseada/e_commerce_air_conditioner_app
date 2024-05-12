@@ -15,8 +15,9 @@ import '../../../../../models/social_media.dart';
 import '../../../../../utilities/shared_pref.dart';
 import '../../../screens/change_password/change_password.dart';
 import '../components/about_us/aboutCompany.dart';
+import '../controllers/Favourites_cubit/favourites_cubit.dart';
 import 'edit_screen.dart';
-import '../../../screens/favorites/favoritesPage.dart';
+import 'favoritesPage.dart';
 import '../../../screens/locations/saved_location.dart';
 import '../../../screens/myOrders/myorders.dart';
 
@@ -72,6 +73,7 @@ class _morePageState extends State<morePage> {
               ),
               InkWell(
                 onTap: () {
+                  BlocProvider.of<FavouritesCubit>(context).favouriteProducts();
                   navigateTo(context, const FavoritesScreen());
                 },
                 child: Center(

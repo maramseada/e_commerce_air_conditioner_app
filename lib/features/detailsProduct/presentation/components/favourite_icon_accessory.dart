@@ -33,9 +33,9 @@ class _FavoriteIconAccessoryBlocState extends State<FavoriteIconAccessoryBloc> {
             onPressed: () {
               final cubit = BlocProvider.of<FavAccessoryCubit>(context);
               if (isFavProduct) {
-                cubit.unFavAccessory(id: widget.id);
+                cubit.unFavAccessory(id: widget.id, context: context);
               } else {
-                cubit.favAccessory(id: widget.id);
+                cubit.favAccessory(id: widget.id, context: context);
               }
             },
             icon: Padding(

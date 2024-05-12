@@ -25,6 +25,7 @@ import 'features/home/presentation/controllers/accessory/acessory_details_cubit.
 import 'features/home/presentation/controllers/best_sellers/best_sellers_cubit.dart';
 import 'features/home/presentation/controllers/fav_accessory/fav_accessory_cubit.dart';
 import 'features/home/presentation/controllers/fav_products_list/fav_products_list_cubit.dart';
+import 'features/more/presentation/controllers/Favourites_cubit/favourites_cubit.dart';
 import 'features/splash/splash.dart';
 
 void main() async {
@@ -74,12 +75,12 @@ BestSellersCubit bestSellerCubit =BestSellersCubit() ;
           BlocProvider(create: (context) => ProfileCubit(api)),
           BlocProvider(create: (context) => ProductDetailsCubit(api, favApi, cartApi)),
           BlocProvider(create: (context) => HomeCubit(api, favApi, cartApi)),
-          BlocProvider(create: (context) => ImagesCubit(api)),
           BlocProvider(create: (context) => AccessoryDetailsCubit(api, favApi, cartApi)),
           BlocProvider(create: (context) => BestSellersCubit(api : api,)..getBestSellers()),
           BlocProvider(create: (context) => FavProductDetailsCubit(api:api, favApi:favApi )),
           BlocProvider(create: (context) => CartProductDetailsCubit(api, cartApi)),
           BlocProvider(create: (context) => CarouselHomeCubit(api)),
+          BlocProvider(create: (context) => FavouritesCubit(favApi:favApi)),
           BlocProvider(create: (context) => FavAccessoryCubit(api:api , favApi:  favApi)),
           BlocProvider(create: (context) => AccessoryCubit(api:api)..getAccessory()),
           BlocProvider(create: (context) => FavProductDetailsListCubit(api, favApi)),

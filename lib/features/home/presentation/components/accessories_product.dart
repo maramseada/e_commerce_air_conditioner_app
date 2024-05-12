@@ -23,16 +23,8 @@ class AccessoriesProduct extends StatefulWidget {
 
 class _AccessoriesProductState extends State<AccessoriesProduct> {
   Api api = Api();
-  bool isFavProduct = false;
-  late Future<Widget> _imageFuture;
+ late bool isFavProduct;
 
-  @override
-  void initState() {
-    isFavProduct = widget.product.favorite ?? false;
-    _imageFuture = api.ImageHome(widget.product.image);
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +54,7 @@ class _AccessoriesProductState extends State<AccessoriesProduct> {
             children: [
             Container(
             height: 100,
-            margin: EdgeInsets.symmetric(horizontal: 5),
+            margin: const EdgeInsets.symmetric(horizontal: 5),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
@@ -141,11 +133,11 @@ class _AccessoriesProductState extends State<AccessoriesProduct> {
                           return IconButton(
                             onPressed: () {
                               if (isFavProduct) {
-                                cubit.unFavAccessory(id: widget.product.id);
+                                cubit.unFavAccessory(id: widget.product.id, context: context);
                                 BlocProvider.of<AccessoryCubit>(context).getAccessoryFav();
 
                               } else {
-                                cubit.favAccessory(id: widget.product.id);
+                                cubit.favAccessory(id: widget.product.id, context: context);
                                 BlocProvider.of<AccessoryCubit>(context).getAccessoryFav();
 
                               }

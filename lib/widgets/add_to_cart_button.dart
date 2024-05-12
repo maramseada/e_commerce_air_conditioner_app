@@ -1,4 +1,5 @@
 import 'package:e_commerce/constant/font_size.dart';
+import 'package:e_commerce/constant/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -10,7 +11,7 @@ class AddToCartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(9),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -28,7 +29,7 @@ class AddToCartButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(
-            'assets/images/shopping-cart.svg',
+        cartIcon
           ),
           const SizedBox(
             width: 7,

@@ -6,7 +6,7 @@ import 'carousel_home_state.dart';
 
 class CarouselHomeCubit extends Cubit<CarouselHomeState> {
   Api api;
-  List<BannerModel>? carouselHome;
+  late List<BannerModel> carouselHome;
 
   CarouselHomeCubit(this.api) : super(CarouselHomeInitial());
 

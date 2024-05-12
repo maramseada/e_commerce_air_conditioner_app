@@ -13,15 +13,9 @@ class CategoryHomeCard extends StatefulWidget {
 }
 
 class _CategoryHomeCardState extends State<CategoryHomeCard> {
-  late Future<Widget> _imageFuture;
   Api api = Api();
 
-  @override
-  void initState() {
-    _imageFuture = api.getImageHome(widget.category![widget.index].image);
 
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

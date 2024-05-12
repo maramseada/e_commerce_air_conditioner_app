@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/constant/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,10 @@ import '../controllers/best_sellers/best_sellers_cubit.dart';
 
 class BestSellersProduct extends StatefulWidget {
   final ProductsModel? product;
-  const BestSellersProduct({Key? key, required this.product, }) : super(key: key);
+  const BestSellersProduct({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
 
   @override
   State<BestSellersProduct> createState() => _BestSellersProductState();
@@ -25,30 +29,14 @@ class BestSellersProduct extends StatefulWidget {
 
 class _BestSellersProductState extends State<BestSellersProduct> {
   Api api = Api();
-  bool isFavProduct = false;
-  late Future<Widget> _imageFuture;
-
-  @override
-  void initState() {
-    isFavProduct = widget.product!.favorite ?? false;
-    _imageFuture = api.ImageHome(widget.product!.image);
-
-    super.initState();
-  }
+  late bool isFavProduct;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final cubit = BlocProvider.of<FavProductDetailsCubit>(context);
 
-
-
-    return
-
-
-
-
-      Container(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       decoration: BoxDecoration(
         color: widget.product!.quantity != 0 ? Colors.white : paleGrayColor,
@@ -65,34 +53,22 @@ class _BestSellersProductState extends State<BestSellersProduct> {
       child: Column(
         children: [
           Container(
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.05),
-                  spreadRadius: 1,
-                  blurRadius: 10,
-                  offset: const Offset(0, 5),
-                ),
-              ],
-            ),
-            child: FutureBuilder<Widget>(
-              future: _imageFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Container();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  return snapshot.data ?? const SizedBox();
-                }
-              },
-            ),
-          ),
+              height: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.05),
+                    spreadRadius: 1,
+                    blurRadius: 10,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: CachedNetworkImage(imageUrl: 'https://albakr-ac.com/${widget.product!.image}')),
           Container(
             height: 60,
-            padding: const EdgeInsets.only(top:8),
+            padding: const EdgeInsets.only(top: 8),
             alignment: Alignment.centerRight,
             child: Text(
               widget.product!.name,
@@ -107,26 +83,10 @@ class _BestSellersProductState extends State<BestSellersProduct> {
               ? SizedBox(
                   //   width: size.width * 0.2,
                   height: 30,
-                  child: FutureBuilder<Widget>(
-                    future: api.ImageHome(widget.product!.brand!.image),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container();
-                      } else if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
-                      } else {
-                        final imageWidget = snapshot.data;
-                        return imageWidget != null
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.start, // Align the row to the end (right)
-                                children: [
-                                  imageWidget,
-                                ],
-                              )
-                            : const SizedBox(); //
-                      }
-                    },
-                  ),
+                  child: CachedNetworkImage(
+              fit: BoxFit.fill,
+              imageUrl: 'https://albakr-ac.com/${widget.product!.brand!.image}',
+              errorWidget: (context, url, error) => const Icon(Icons.access_alarm)),
                 )
               : Container(),
           Row(
@@ -186,10 +146,11 @@ class _BestSellersProductState extends State<BestSellersProduct> {
                           onTap: () {
                             BlocProvider.of<CartProductDetailsCubit>(context).addToCart(
                               id: widget.product!.id.toString(),
-                              amount: 1, context: context,
+                              amount: 1,
+                              context: context,
                             );
                           },
-                          child:const AddToCartButton(),
+                          child: const AddToCartButton(),
                         ),
                       )
                     : Text(
@@ -203,14 +164,11 @@ class _BestSellersProductState extends State<BestSellersProduct> {
                       ),
                 BlocConsumer<FavProductDetailsCubit, FavProductDetailsState>(
                   builder: (context, state) {
-                    if (state is FavProductDetailsLoading) {
-                      // Show a loading indicator
-                      return const SizedBox();
-                    } else if (state is FavProductDetailsSuccess) {
-                      // Access the success state and build your UI accordingly
-                      //    final isFavProduct = cubit.isProductFav ?? false;
-                      return IconButton(
-                        onPressed: () {
+                    if (state is FavProductDetailsSuccess) {
+                      isFavProduct = widget.product!.favorite ?? false;
+
+                      return InkWell(
+                        onTap: () {
                           if (isFavProduct) {
                             cubit.unFavProduct(id: widget.product!.id);
                             BlocProvider.of<BestSellersCubit>(context).getBestSellersFav();
@@ -219,12 +177,11 @@ class _BestSellersProductState extends State<BestSellersProduct> {
                             BlocProvider.of<BestSellersCubit>(context).getBestSellersFav();
                           }
                         },
-                        icon: isFavProduct
+                        child: isFavProduct
                             ? SvgPicture.asset('assets/images/favicon.svg', width: 25)
                             : SvgPicture.asset('assets/images/fav.svg', width: 25),
                       );
                     } else if (state is FavProductDetailsFailure) {
-                      // Handle the failure state
                       return SvgPicture.asset('assets/images/favicon.svg', width: 25);
                     } else {
                       //todo see the sizzee
@@ -232,8 +189,9 @@ class _BestSellersProductState extends State<BestSellersProduct> {
                     }
                   },
                   listener: (context, state) {
-                    isFavProduct = widget.product!.favorite ?? false;
-
+                    setState(() {
+                      isFavProduct = widget.product!.favorite ?? false;
+                    });
                   },
                 )
               ],

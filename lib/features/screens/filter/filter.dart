@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -21,11 +22,10 @@ class Filter extends StatefulWidget {
 }
 
 class _FilterState extends State<Filter> {
-  List<bool> _checkboxValues = List.generate(11, (index) => false);
+  List<bool> _checkboxValues = List.generate(13, (index) => false);
   bool progress = false;
   final Api _api = Api();
   bool _dataLoaded = false;
-  bool _dataLoadedImage = false;
 List<int> brandsSelected = [];
   List<BrandModel>? brand;
   Widget? imageBrand;
@@ -41,24 +41,8 @@ List<int> brandsSelected = [];
   Future<void> _fetchData() async {
     try {
       brand = await _api.getBrands();
-      print('a;lxx;lasmdl;m;lm;la,l;,;la,l;,l;s,l;$brand');
       setState(() {
         _dataLoaded = true;
-      });
-    } catch (error) {
-      print('Error fetching data: $error');
-    }
-  }
-  Map<int, Widget> _imageMap = {}; // Store image data for each checkbox
-
-  Future<void> _fetchDataImage(int index) async {
-    try {
-      // Await the result of _api.ImageHome(brand![index].image)
-      final imageWidget = await _api.ImageHome(brand![index].image);
-
-      setState(() {
-        _imageMap[index] = imageWidget; // Store image data in the map
-        _dataLoadedImage = true;
       });
     } catch (error) {
       print('Error fetching data: $error');
@@ -154,13 +138,13 @@ List<int> brandsSelected = [];
                     crossAxisCount: 3,
                     childAspectRatio: 2.2,
                     children: List.generate(brand!.length, (index) {
-                      _fetchDataImage(index); // Fetch image data before building UI
+
                       return Row(
                         children: [
                           Transform.scale(
                             scale: 1.2,
                             child: Checkbox(
-                              side: BorderSide(color: Color(0xffB1B1B1)),
+                              side: const BorderSide(color: Color(0xffB1B1B1)),
                               activeColor: secondColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -178,14 +162,17 @@ List<int> brandsSelected = [];
                             width: size.width * 0.18,
                             height: size.height * 0.22,
                             alignment: Alignment.center,
-                            child: _dataLoadedImage ? _imageMap[index] ?? Container() : Container(),
+                            child: CachedNetworkImage(
+                                fit: BoxFit.fill,
+                                imageUrl: 'https://albakr-ac.com/${brand![index].image}',
+                                errorWidget: (context, url, error) => const Icon(Icons.access_alarm))
                           ),
                         ],
                       );
                     }),
                   ),
                 ),
-                Divider(
+                const Divider(
                   color: Color(0xffE9E9E9),
                   endIndent: 15,
                   indent: 15,

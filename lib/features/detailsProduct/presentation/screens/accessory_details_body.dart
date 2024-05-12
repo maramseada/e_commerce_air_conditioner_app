@@ -1,63 +1,65 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerce/Cubits/Images/image_cubit.dart';
+import 'package:e_commerce/models/ordermodel.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../components/add_to_cart_product_contoller.dart';
-import '../controller/cart_product_cubit.dart';
+import '../../../../../Cubits/Images/image_cubit.dart';
 import '../../../../../api/api.dart';
-
+import '../../../../../api/cart_api.dart';
+import '../../../../../api/fav_api.dart';
 import '../../../../../constant/colors.dart';
-import '../../../../../models/ordermodel.dart';
-import '../controller/product/product_details_cubit.dart';
-import '../widgets/Radio.dart';
-import '../widgets/carouselDetails.dart';
+import '../../../../../models/accessor_model.dart';
+import '../../../../../widgets/button.dart';
+import '../../../home/presentation/controllers/accessory/acessory_details_cubit.dart';
+import '../../../home/presentation/controllers/accessory/acessory_details_state.dart';
 import '../components/image_loader.dart';
+
+import '../widgets/carouselDetails.dart';
 import '../widgets/review.dart';
 
-class ProductDetailsBody extends StatefulWidget {
-  ProductsModel? product;
-  int? id;
-  ProductDetailsBody({super.key, required this.product, required this.id});
+class AccessoryDetailsBody extends StatefulWidget {
+  final int id;
+  final AccessoryModel? Accessory;
+  const AccessoryDetailsBody({super.key, required this.id, required this.Accessory});
 
   @override
-  State<ProductDetailsBody> createState() => _ProductDetailsBodyState();
+  State<AccessoryDetailsBody> createState() => _AccessoryDetailsBodyState();
 }
 
-class _ProductDetailsBodyState extends State<ProductDetailsBody> {
-  String? image;
+class _AccessoryDetailsBodyState extends State<AccessoryDetailsBody> {
+  bool incrementAmount = false;
 
+  final _api = Api();
+  final cartApi = CartApi();
+  bool isSelected = false;
+  bool progress = false;
+  List<String> errors = [];
+  bool isAddingAccessory = false;
+  int? addsId;
+  bool isAddingProduct = false;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    bool incrementAmount = false;
-    final _api = Api();
-
-    int addsId = 1;
-    void handleItemSelected(int value) {
-      setState(() {
-        BlocProvider.of<CartProductDetailsCubit>(context).addsId = value;
-      });
-    }
-
-    List<String> imageUrls = [
-      if (widget.product!.images.isNotEmpty)'https://albakr-ac.com/${widget.product!.images[0]}' else 'https://albakr-ac.com/${widget.product!.image}',
-      if (widget.product!.images.length > 1)'https://albakr-ac.com/${widget.product!.images[1]}' else 'https://albakr-ac.com/${widget.product!.image}',
-      if (widget.product!.images.length > 2)'https://albakr-ac.com/${widget.product!.images[2]}' else 'https://albakr-ac.com/${widget.product!.image}',
-      if (widget.product!.images.length > 3) 'https://albakr-ac.com/${widget.product!.images[3]}' else 'https://albakr-ac.com/${widget.product!.image}',
+    final List imageUrls = [
+      'https://albakr-ac.com/${widget.Accessory!.images![0]}',
+      'https://albakr-ac.com/${widget.Accessory!.images![1]}',
+      'https://albakr-ac.com/${widget.Accessory!.images![2]}',
+      'https://albakr-ac.com/${widget.Accessory!.images![3]}',
     ];
 
-    bool isAddingProduct = false;
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child:
 
-    return SafeArea(
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Scaffold(
 
-          body: SingleChildScrollView(
+
+
+           SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -66,19 +68,20 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                     padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
                     height: 380,
                     child: CarouselDetails(
-                        // Generate BlocBuilders for each product image with different indices
-                        images:imageUrls
-                            .map(
-                              (imageUrl) =>CachedNetworkImage(imageUrl: imageUrl,
-                          ),
-                        )
-                            .toList(),),
+                      images: imageUrls
+                          .map(
+                            (imageUrl) =>CachedNetworkImage(imageUrl: imageUrl,
+
+                            )
+                          )
+                          .toList(),
+                    ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: size.width * 0.04, vertical: 5),
                   child: Text(
-                    widget.product!.name,
+                    widget.Accessory!.name,
                     style: TextStyle(
                       fontFamily: 'Almarai',
                       fontSize: size.width * 0.044,
@@ -89,28 +92,10 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    widget.product!.brand != null
-                        ? Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: size.width * 0.04,
-                            ),
-                            width: 110,
-                  child: CachedNetworkImage(
-          fit: BoxFit.fill,
-          imageUrl: 'https://albakr-ac.com/${widget.product!.brand!.image}',
-          errorWidget: (context, url, error) => const Icon(Icons.access_alarm)),
-
-
-
-                          )
-                        : Container(
-                            padding: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.018,
-                          )),
                     RatingBar.builder(
                       ignoreGestures: true,
                       itemSize: 20,
-                      initialRating: widget.product!.totalRate.toDouble(),
+                      initialRating: widget.Accessory!.totalRate!.toDouble(),
                       minRating: 1,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
@@ -127,7 +112,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                       width: size.width * 0.03,
                     ),
                     Text(
-                      '(${widget.product!.totalRate})',
+                      '(${widget.Accessory!.totalRate})',
                       style: TextStyle(
                         color: const Color(0xFFD3A100),
                         fontFamily: 'Almarai',
@@ -140,7 +125,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: size.width * 0.04, vertical: 10),
                   child: Text(
-                    widget.product!.description,
+                    widget.Accessory!.description,
                     style: const TextStyle(
                       color: Color(0xFF8A8A8A),
                       fontFamily: 'Almarai',
@@ -150,7 +135,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: size.width * 0.04, vertical: size.height * 0.015),
                   child: Text(
-                    ' ${widget.product!.price} ر.س  ',
+                    ' ${widget.Accessory!.price} ر.س  ',
                     style: TextStyle(
                       fontSize: size.width * 0.05,
                       fontWeight: FontWeight.bold,
@@ -159,14 +144,12 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                     ),
                   ),
                 ),
-
-                RadioScreen(onItemSelected: handleItemSelected),
-
-                widget.product!.quantity < 5
+                // toto radio screen Accessory details
+                widget.Accessory!.quantity < 5
                     ? Padding(
                         padding: EdgeInsets.only(right: size.width * 0.055, top: 20),
                         child: Text(
-                          'متوفر عدد ${widget.product!.quantity} قطع ! ',
+                          'متوفر عدد ${widget.Accessory!.quantity} قطع ! ',
                           style: TextStyle(
                             fontSize: size.width * 0.04,
                             fontFamily: 'Almarai',
@@ -175,7 +158,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                           ),
                         ))
                     : const SizedBox(),
-                widget.product!.quantity != 0
+                widget.Accessory!.quantity != 0
                     ? Column(children: [
                         Container(
                           padding: EdgeInsets.only(top: 10),
@@ -198,7 +181,9 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    BlocProvider.of<ProductDetailsCubit>(context).amountIncrease();
+                                    setState(() {
+                                      BlocProvider.of<AccessoryDetailsCubit>(context).amountIncrease();
+                                    });
                                   },
                                   child: Container(
                                     width: size.width * 0.1,
@@ -221,7 +206,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                                   ),
                                 ),
                                 Text(
-                                  BlocProvider.of<ProductDetailsCubit>(context).amount.toString(),
+                                  BlocProvider.of<AccessoryDetailsCubit>(context).amount.toString(),
                                   style: TextStyle(
                                     fontSize: size.width * 0.09,
                                     fontFamily: 'Almarai',
@@ -230,7 +215,9 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    BlocProvider.of<ProductDetailsCubit>(context).amountDecrease();
+                                    setState(() {
+                                      BlocProvider.of<AccessoryDetailsCubit>(context).amountDecrease();
+                                    });
                                   },
                                   child: Container(
                                     width: size.width * 0.1,
@@ -243,7 +230,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                                         width: 2.0,
                                       ),
                                     ),
-                                    child: const Center(
+                                    child: Center(
                                       child: Icon(
                                         Icons.remove,
                                         color: Colors.black,
@@ -260,16 +247,13 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                           padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
                           child: GestureDetector(
                             onTap: () {
-                              BlocProvider.of<CartProductDetailsCubit>(context).addToCart(
-                                id: widget.id.toString(), amount:  BlocProvider.of<ProductDetailsCubit>(context).amount, context: context,
-                              );
-
-
+                              BlocProvider.of<AccessoryDetailsCubit>(context).addToCart(id: widget.Accessory!.id.toString());
                             },
-                            child: const AddToCartProduct()
-
+                            child: Button(
+                              text: 'إضافة إلى عربة التسوق',
+                              inProgress: isAddingProduct,
+                            ),
                           ),
-
                         ),
                       ])
                     : Container(
@@ -285,12 +269,13 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                           ),
                         ),
                       ),
+
                 Padding(
                   padding: EdgeInsets.only(right: size.width * 0.04, top: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const FaIcon(
+                      FaIcon(
                         FontAwesomeIcons.solidStar,
                         color: Color(0xFFD3A100),
                       ),
@@ -306,7 +291,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: size.width * 0.055, vertical: 10),
-                  child: widget.product!.reviews != null && widget.product!.reviews!.isNotEmpty
+                  child: widget.Accessory!.reviews != null && widget.Accessory!.reviews!.isNotEmpty
                       ? Text(
                           'عرض لجميع التقييمات على هذا المنتج',
                           style: TextStyle(
@@ -322,19 +307,18 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                           ),
                         ),
                 ),
-                widget.product!.reviews != null && widget.product!.reviews!.isNotEmpty
-                    ? ReviewProduct(reviews: widget.product!.reviews)
-                    : const SizedBox(
-                        height: 10,
+                widget.Accessory!.reviews != null && widget.Accessory!.reviews!.isNotEmpty
+                    ? ReviewProduct(reviewsAccessory: widget.Accessory!.reviews)
+                    : SizedBox(
+                        height: 30,
                       ),
-                const SizedBox(
-                  height: 10,
-                )
               ],
             ),
           ),
-        ),
-      ),
+
+
     );
   }
+
+
 }
