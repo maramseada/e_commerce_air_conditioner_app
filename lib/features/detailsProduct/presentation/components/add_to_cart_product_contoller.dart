@@ -14,7 +14,7 @@ class AddToCartProduct extends StatelessWidget {
     return     BlocBuilder<CartProductDetailsCubit, CartProductDetailsState>(
       builder: (context, state) {
         if (state is CartProductDetailsLoading) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         } else if (state is CartProductDetailsFailure) {
           const  snackBar =  SnackBar(
             content:  Text(

@@ -1,7 +1,7 @@
 import 'package:e_commerce/Cubits/Profile/profile_cubit.dart';
-import 'package:e_commerce/features/screens/guideLines/guide_lines.dart';
+import 'package:e_commerce/features/more/presentation/screens/guide_lines.dart';
 import 'package:e_commerce/features/screens/login/login.dart';
-import 'package:e_commerce/features/screens/returnPolicy/return_policy.dart';
+import 'package:e_commerce/features/more/presentation/screens/return_policy.dart';
 import 'package:e_commerce/widgets/moreButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

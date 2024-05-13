@@ -26,15 +26,18 @@ import 'features/home/presentation/controllers/best_sellers/best_sellers_cubit.d
 import 'features/home/presentation/controllers/fav_accessory/fav_accessory_cubit.dart';
 import 'features/home/presentation/controllers/fav_products_list/fav_products_list_cubit.dart';
 import 'features/more/presentation/controllers/Favourites_cubit/favourites_cubit.dart';
+import 'features/our_projects/data/dataSource/projects_api.dart';
+import 'features/our_projects/presentation/controllers/our_projects_cubit.dart';
+import 'features/our_work/data/dataSource/works_api.dart';
+import 'features/our_work/presentation/controllers/our_work_cubit.dart';
 import 'features/splash/splash.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+
   bool? firstTime = await getBool("firstTime");
   String? token = await getString('token');
-  BlocOverrides.runZoned(
-    () {
+  Bloc.observer = MyBlocObserver();
+
       runApp(
         DevicePreview(
             enabled: true,
@@ -44,9 +47,8 @@ void main() async {
                 ) // Wrap your app
             ),
       );
-    },
-    blocObserver: SimpleBlocObserver(),
-  );
+
+
 }
 
 class MyApp extends StatelessWidget {
@@ -58,8 +60,9 @@ class MyApp extends StatelessWidget {
   String? token;
   Api api = Api();
   FavApi favApi = FavApi();
+  ProjectsApi projectsApi = ProjectsApi();
+  WorksApi workApi = WorksApi();
   CartApi cartApi = CartApi();
-BestSellersCubit bestSellerCubit =BestSellersCubit() ;
   @override
   Widget build(BuildContext context) {
     if (firstTime != null && firstTime == false) {
@@ -84,6 +87,8 @@ BestSellersCubit bestSellerCubit =BestSellersCubit() ;
           BlocProvider(create: (context) => FavAccessoryCubit(api:api , favApi:  favApi)),
           BlocProvider(create: (context) => AccessoryCubit(api:api)..getAccessory()),
           BlocProvider(create: (context) => FavProductDetailsListCubit(api, favApi)),
+          BlocProvider(create: (context) => OurProjectsCubit(projectsApi)),
+          BlocProvider(create: (context) => OurWorkCubit(workApi)),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

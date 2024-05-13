@@ -14,7 +14,7 @@ class EditProfileBody extends StatelessWidget {
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (BuildContext context, state) {
         if (state is ProfileLoading) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         } else if (state is ProfileSuccess) {
           profileUser = BlocProvider.of<ProfileCubit>(context).user;
           return SuccessProfileData(

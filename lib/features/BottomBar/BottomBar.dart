@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/our_projects/presentation/controllers/our_projects_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,8 +9,9 @@ import '../home/presentation/controllers/Home/home_cubit.dart';
 import '../home/presentation/controllers/best_sellers/best_sellers_cubit.dart';
 import '../home/presentation/screens/home.dart';
 import '../more/presentation/screens/morePage.dart';
-import '../screens/our_projects/ourProjectsPage.dart';
-import '../screens/our_work/ourWorkPage.dart';
+import '../our_projects/presentation/screens/our_projects_page.dart';
+import '../our_work/presentation/controllers/our_work_cubit.dart';
+import '../our_work/presentation/screens/ourWorkPage.dart';
 import '../screens/shoppingCart/shoppingCartPage.dart';
 
 class BottomBarPage extends StatefulWidget {
@@ -28,7 +30,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
   List _widgetOptions = [
     HomePage(),
     ShoppingPage(),
-    ourProjectsPage(),
+    OurProjectsPage(),
     OurWorkPage(),
     morePage(),
   ];
@@ -83,6 +85,19 @@ class _BottomBarPageState extends State<BottomBarPage> {
       setState(() {
         _selectedIndex = index;
         BlocProvider.of<HomeCubit>(context).getHome();
+
+      });
+    }
+    if (index == 2 || _selectedIndex == 2) {
+      setState(() {
+        _selectedIndex = index;
+        BlocProvider.of<OurProjectsCubit>(context).getProjectsCategories();
+
+      });
+    }   if (index == 3|| _selectedIndex == 3) {
+      setState(() {
+        _selectedIndex = index;
+        BlocProvider.of<OurWorkCubit>(context).getWorksCategories();
 
       });
     }

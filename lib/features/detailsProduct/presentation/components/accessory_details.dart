@@ -39,7 +39,7 @@ class AccessoryDetails extends StatelessWidget {
         ),
         body: BlocConsumer<AccessoryDetailsCubit, AccessoryDetailsState>(builder:  (BuildContext context, state) {
           if (state is AccessoryDetailsLoading){
-      return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
       
       }else if (state is AccessoryDetailsSuccess){
             accessory = BlocProvider.of<AccessoryDetailsCubit>(context).product;

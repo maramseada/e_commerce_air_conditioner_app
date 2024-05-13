@@ -47,7 +47,6 @@ class _RequestPriceState extends State<RequestPrice> {
   void initState() {
     super.initState();
     _workFuture = _api.askPriceCategory();
-    // _citiesFuture = _api.getCity(areaId ?? 1);
   }
 
   @override
