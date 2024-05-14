@@ -1,5 +1,5 @@
 
-import 'package:e_commerce/constant/font_size.dart';
+import 'package:e_commerce/core/constant/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_commerce/models/ordermodel.dart';

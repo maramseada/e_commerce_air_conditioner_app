@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../constant/app_constants.dart';
-import '../../../../../constant/navigator.dart';
+import '../../../../../core/constant/app_constants.dart';
+import '../../../../../core/constant/navigator.dart';
 import '../../../data/models/projectsCategory.dart';
 import '../../controllers/our_projects_cubit.dart';
 import '../../screens/our_project_details.dart';

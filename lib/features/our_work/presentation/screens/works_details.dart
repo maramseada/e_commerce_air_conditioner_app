@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 import '../components/work_details/work_details_bloc.dart';
 
 class WorksDetails extends StatelessWidget {

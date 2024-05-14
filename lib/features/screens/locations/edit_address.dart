@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../api/address_api.dart';
 import '../../../api/api.dart';
-import '../../../constant/colors.dart';
+import '../../../core/constant/colors.dart';
 import '../../../models/address.dart';
 import '../../../models/places.dart';
 

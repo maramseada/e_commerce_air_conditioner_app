@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerce/constant/font_size.dart';
+import 'package:e_commerce/core/constant/font_size.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../constant/app_constants.dart';
+import '../../../../../core/constant/app_constants.dart';
 import '../../../data/models/project.dart';
 
 class OurProjectsListViewItem extends StatelessWidget {
@@ -24,7 +24,7 @@ class OurProjectsListViewItem extends StatelessWidget {
           Container(
               padding: const EdgeInsets.only(top: 5),
               child: CachedNetworkImage(
-                imageUrl: '$baseUrl${project.image}',
+                imageUrl: '${AppConstants.baseUrl}${project.image}',
               )),
           Container(
             width: size.width * 0.7,

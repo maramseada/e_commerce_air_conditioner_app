@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../api/api.dart';
-import '../../../../../constant/colors.dart';
-import '../../../../../constant/images.dart';
-import '../../../../../constant/navigator.dart';
+import '../../../../../core/constant/colors.dart';
+import '../../../../../core/constant/images.dart';
+import '../../../../../core/constant/navigator.dart';
 import '../../../../../utilities/shared_pref.dart';
 import '../../../../../widgets/button.dart';
 import '../../../otp/otp.dart';

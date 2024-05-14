@@ -1,4 +1,4 @@
-import 'package:e_commerce/constant/font_size.dart';
+import 'package:e_commerce/core/constant/font_size.dart';
 import 'package:e_commerce/features/home/presentation/components/accessory_list_view_product.dart';
 import 'package:e_commerce/features/home/presentation/controllers/Accessories/accessory_state.dart';
 import 'package:e_commerce/features/home/presentation/controllers/fav_accessory/fav_accessory_cubit.dart';

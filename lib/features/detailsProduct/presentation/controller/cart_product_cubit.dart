@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../api/api.dart';
 import '../../../../../api/cart_api.dart';
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 
 class CartProductDetailsCubit extends Cubit<CartProductDetailsState> {
   Api api;

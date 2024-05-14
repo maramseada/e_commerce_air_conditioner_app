@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import '../../../../constant/app_constants.dart';
+import '../../../../core/constant/app_constants.dart';
 import '../../../../utilities/shared_pref.dart';
 import '../models/works.dart';
 
@@ -7,7 +7,7 @@ class WorksApi {
   Future workCategories() async {
     Map<String, dynamic> data;
 
-    final url = '$baseUrl/api/works';
+    final url = '${AppConstants.baseUrl}/api/works';
     try {
       final dio = Dio();
 
@@ -38,7 +38,7 @@ class WorksApi {
   Future workByType({required String type}) async {
     List<Works> data;
 
-    final url = '$baseUrl/api/works/show?type=$type';
+    final url = '${AppConstants.baseUrl}/api/works/show?type=$type';
     try {
       final dio = Dio();
 

@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../constant/app_constants.dart';
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/app_constants.dart';
+import '../../../../../core/constant/colors.dart';
 import '../../../data/models/works.dart';
 
 class WorkDetailsBodyItem extends StatelessWidget {
@@ -28,7 +28,7 @@ class WorkDetailsBodyItem extends StatelessWidget {
                 topLeft: Radius.circular(20),
               ),
               child:CachedNetworkImage(
-                imageUrl: '$baseUrl${work.image}',
+                imageUrl: '${AppConstants.baseUrl}${work.image}',
               )
           ),
           SizedBox(height: size.height * 0.03),

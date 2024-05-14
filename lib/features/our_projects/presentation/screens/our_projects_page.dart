@@ -1,4 +1,4 @@
-import 'package:e_commerce/constant/font_size.dart';
+import 'package:e_commerce/core/constant/font_size.dart';
 import 'package:flutter/material.dart';
 
 import '../components/our_projects_gridview/our_projects_page_body.dart';

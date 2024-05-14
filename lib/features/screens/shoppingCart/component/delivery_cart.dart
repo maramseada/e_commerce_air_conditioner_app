@@ -1,10 +1,10 @@
-import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:e_commerce/features/screens/shoppingCart/component/select_save_title.dart';
 import 'package:e_commerce/features/screens/shoppingCart/component/steeper.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../constant/colors.dart';
-import '../../../../constant/images.dart';
+import '../../../../core/constant/colors.dart';
+import '../../../../core/constant/images.dart';
 import '../../locations/add_address.dart';
 import '../shoppingCartPage.dart';
 

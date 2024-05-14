@@ -2,8 +2,8 @@ import 'package:e_commerce/features/more/presentation/controllers/Favourites_cub
 import 'package:e_commerce/features/more/presentation/controllers/Favourites_cubit/favourites_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../../constant/colors.dart';
-import '../../../../constant/font_size.dart';
+import '../../../../../../core/constant/colors.dart';
+import '../../../../core/constant/font_size.dart';
 import '../../../../models/fav_model.dart';
 import '../components/favourites/favourites_body.dart';
 

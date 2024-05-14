@@ -1,15 +1,15 @@
-import 'package:e_commerce/constant/text.dart';
+import 'package:e_commerce/core/constant/text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../Cubits/Profile/profile_cubit.dart';
 import '../../../../../api/api.dart';
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 import '../../../../../models/profileData.dart';
 import '../../../../../utilities/app_styles.dart';
 import '../../../../../widgets/button.dart';
+import '../../controllers/Profile/profile_cubit.dart';
 
 class SuccessProfileData extends StatelessWidget {
   SuccessProfileData({super.key, required this.user});

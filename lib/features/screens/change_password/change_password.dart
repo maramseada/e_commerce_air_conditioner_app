@@ -1,11 +1,11 @@
-import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../../api/api.dart';
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 import '../../../../../widgets/button.dart';
 import '../forget_password/foget_pass/forget_pass.dart';
 

@@ -1,9 +1,9 @@
-import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 import '../../../../../widgets/button.dart';
 import '../../../api/api.dart';
 import '../../../models/address.dart';

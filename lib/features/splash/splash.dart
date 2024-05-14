@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:e_commerce/features/splash/widgets/splash_view_body.dart';
 import 'package:flutter/material.dart';
-import '../../../constant/navigator.dart';
+import '../../../core/constant/navigator.dart';
 import '../screens/sign_up/register.dart';
 
 class SplashScreen extends StatefulWidget {

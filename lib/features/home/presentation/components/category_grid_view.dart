@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../constant/navigator.dart';
+import '../../../../../core/constant/navigator.dart';
 import '../../../../../models/homeModel.dart';
 import '../screens/typesDetails.dart';
 import 'category_home_card.dart';

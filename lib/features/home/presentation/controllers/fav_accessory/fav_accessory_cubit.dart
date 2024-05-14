@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../api/api.dart';
 import '../../../../../api/fav_api.dart';
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 import '../../../../../models/favourite_product_model.dart';
 import 'fav_accessory_state.dart';
 

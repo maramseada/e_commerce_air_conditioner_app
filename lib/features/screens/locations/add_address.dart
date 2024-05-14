@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 import '../../../api/address_api.dart';
 import '../../../models/address.dart';
 import '../../../models/places.dart';

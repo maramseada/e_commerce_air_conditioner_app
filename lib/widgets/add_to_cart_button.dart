@@ -1,9 +1,9 @@
-import 'package:e_commerce/constant/font_size.dart';
-import 'package:e_commerce/constant/images.dart';
+import 'package:e_commerce/core/constant/font_size.dart';
+import 'package:e_commerce/core/constant/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../constant/colors.dart';
+import '../core/constant/colors.dart';
 
 class AddToCartButton extends StatelessWidget {
   const AddToCartButton({super.key});

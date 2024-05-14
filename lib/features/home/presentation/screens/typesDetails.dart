@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/features/detailsProduct/presentation/components/productDetails.dart';
-import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,10 +11,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../api/api.dart';
 import '../../../../../api/cart_api.dart';
 import '../../../../../api/fav_api.dart';
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 
-import '../../../../../constant/images.dart';
-import '../../../../../constant/navigator.dart';
+import '../../../../../core/constant/images.dart';
+import '../../../../../core/constant/navigator.dart';
 import '../../../../../models/homeModel.dart';
 import '../../../../../models/ordermodel.dart';
 import '../../../../../widgets/checkbox.dart';

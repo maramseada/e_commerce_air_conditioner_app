@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../api/api.dart';
-import '../../../../constant/colors.dart';
+import '../../../../core/constant/colors.dart';
 import '../../../../models/settingsModel.dart';
 
 class GuideLines extends StatefulWidget {

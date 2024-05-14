@@ -1,4 +1,4 @@
-import 'package:e_commerce/constant/colors.dart';
+import 'package:e_commerce/core/constant/colors.dart';
 import 'package:flutter/material.dart';
 class Button extends StatefulWidget {
   final String text;

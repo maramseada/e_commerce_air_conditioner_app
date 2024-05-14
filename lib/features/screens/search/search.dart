@@ -1,9 +1,9 @@
-import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:e_commerce/features/screens/result_search/result_search.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constant/colors.dart';
-import '../../../constant/images.dart';
+import '../../../core/constant/colors.dart';
+import '../../../core/constant/images.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});

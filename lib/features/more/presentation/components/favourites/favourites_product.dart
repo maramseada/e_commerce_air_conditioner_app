@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerce/constant/font_size.dart';
+import 'package:e_commerce/core/constant/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../constant/colors.dart';
-import '../../../../../constant/images.dart';
+import '../../../../../core/constant/colors.dart';
+import '../../../../../core/constant/images.dart';
 import '../../../../../models/homeModel.dart';
 import '../../../../detailsProduct/presentation/components/productDetails.dart';
 import '../../../../detailsProduct/presentation/controller/cart_product_cubit.dart';

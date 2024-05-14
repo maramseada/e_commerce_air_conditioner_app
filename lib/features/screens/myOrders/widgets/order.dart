@@ -1,9 +1,9 @@
-import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:e_commerce/models/ordermodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../constant/colors.dart';
+import '../../../../../../core/constant/colors.dart';
 import '../orderDetails.dart';
 
 class Order extends StatelessWidget {

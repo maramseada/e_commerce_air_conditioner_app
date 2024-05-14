@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constant/images.dart';
+import '../../../../core/constant/images.dart';
 
 class SplashViewBody extends StatelessWidget {
   const SplashViewBody({super.key});

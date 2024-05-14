@@ -2,7 +2,7 @@ import 'package:e_commerce/features/screens/shoppingCart/component/success_order
 import 'package:flutter/material.dart';
 
 import '../../../../api/cart_api.dart';
-import '../../../../constant/colors.dart';
+import '../../../../core/constant/colors.dart';
 import '../../../../models/cart_details_model.dart';
 
 

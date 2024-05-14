@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../constant/app_constants.dart';
+import '../../../../../core/constant/app_constants.dart';
 import '../../../data/models/projectsCategory.dart';
 import '../../controllers/our_projects_cubit.dart';
 import '../../screens/our_project_details.dart';
@@ -67,7 +67,7 @@ class _OurProjectsGridViewItemState extends State<OurProjectsGridViewItem> {
                     height: 110,
                     width: 110,
                     child: CachedNetworkImage(
-                      imageUrl: '$baseUrl${widget.project.image}',
+                      imageUrl: '${AppConstants.baseUrl}${widget.project.image}',
                     )),
                 const SizedBox(
                   height: 10,

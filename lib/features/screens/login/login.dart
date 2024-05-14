@@ -1,4 +1,4 @@
-import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:e_commerce/features/screens/forget_password/foget_pass/forget_pass.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,8 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../../api/api.dart';
-import '../../../constant/colors.dart';
-import '../../../constant/images.dart';
+import '../../../core/constant/colors.dart';
+import '../../../core/constant/images.dart';
 import '../../../utilities/shared_pref.dart';
 import '../../../widgets/button.dart';
 import '../../BottomBar/BottomBar.dart';

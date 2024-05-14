@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:e_commerce/constant/app_constants.dart';
 import 'package:flutter/cupertino.dart';
+import '../../../../core/constant/app_constants.dart';
 import '../models/project.dart';
 import '../models/projectsCategory.dart';
 import '../../../../utilities/shared_pref.dart';
@@ -11,7 +11,7 @@ class ProjectsApi {
   Future<List<Projects>> projectCategories() async {
     List<Projects> data = [];
 
-    final url = '$baseUrl/api/project/categories';
+    final url = '${AppConstants.baseUrl}/api/project/categories';
     try {
 
 
@@ -42,7 +42,7 @@ class ProjectsApi {
   Future<List<Project>> projectByType({required String id}) async {
     List<Project> data;
 
-    final url = '$baseUrl/api/project/show?category_id=$id';
+    final url = '${AppConstants.baseUrl}/api/project/show?category_id=$id';
     try {
 
       final token = await getString('token');

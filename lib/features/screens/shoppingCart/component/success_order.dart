@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constant/colors.dart';
-import '../../../../constant/images.dart';
+import '../../../../core/constant/colors.dart';
+import '../../../../core/constant/images.dart';
 import '../../../../widgets/button.dart';
 
 class SuccessOrder extends StatelessWidget {

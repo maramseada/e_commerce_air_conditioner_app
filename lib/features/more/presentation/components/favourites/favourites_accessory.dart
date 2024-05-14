@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 import '../../../../../models/homeModel.dart';
 import '../../../../../widgets/add_to_cart_button.dart';
 import '../../../../detailsProduct/presentation/components/accessory_details.dart';

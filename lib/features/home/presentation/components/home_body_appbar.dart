@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../../constant/font_size.dart';
-import '../../../../../constant/navigator.dart';
+import '../../../../../core/constant/font_size.dart';
+import '../../../../../core/constant/navigator.dart';
 import '../../../screens/search/search.dart';
 
 class HomeAppBar extends StatelessWidget {

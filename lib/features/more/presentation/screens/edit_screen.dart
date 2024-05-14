@@ -1,18 +1,5 @@
-import 'package:e_commerce/Cubits/Profile/profile_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-import '../../../../../../api/api.dart';
-import '../../../../../../constant/colors.dart';
-import '../../../../../../constant/navigator.dart';
-import '../../../../../../models/profileData.dart';
-import '../../../../../../utilities/shared_pref.dart';
-import '../../../../../../widgets/button.dart';
-import '../../../screens/sign_up/register.dart';
-import '../components/edit_profile/delete_account_sheet.dart';
+import '../../../../../../core/constant/colors.dart';
 import '../components/edit_profile/edit_profile_body.dart';
 
 class editPage extends StatefulWidget {

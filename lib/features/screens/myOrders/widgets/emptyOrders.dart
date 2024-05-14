@@ -1,10 +1,10 @@
-import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:e_commerce/widgets/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../../../constant/colors.dart';
+import '../../../../../../core/constant/colors.dart';
 import '../../../BottomBar/BottomBar.dart';
 
 class EmptyOrders extends StatelessWidget {

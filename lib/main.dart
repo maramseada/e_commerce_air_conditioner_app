@@ -1,6 +1,6 @@
-import 'package:e_commerce/Cubits/Profile/profile_cubit.dart';
 import 'package:e_commerce/api/api.dart';
 import 'package:e_commerce/features/BottomBar/BottomBar.dart';
+import 'package:e_commerce/features/more/presentation/controllers/logout_cubit/logout_cubit.dart';
 import 'package:e_commerce/features/screens/forget_password/foget_pass/forget_pass.dart';
 import 'package:e_commerce/features/screens/forget_password/new_pass/new_pass.dart';
 import 'package:e_commerce/features/home/presentation/controllers/Carousel/carousel_cubit.dart';
@@ -25,7 +25,11 @@ import 'features/home/presentation/controllers/accessory/acessory_details_cubit.
 import 'features/home/presentation/controllers/best_sellers/best_sellers_cubit.dart';
 import 'features/home/presentation/controllers/fav_accessory/fav_accessory_cubit.dart';
 import 'features/home/presentation/controllers/fav_products_list/fav_products_list_cubit.dart';
+import 'features/more/data/dataSource/account_settings_data_source.dart';
+import 'features/more/data/dataSource/settings_data_source.dart';
 import 'features/more/presentation/controllers/Favourites_cubit/favourites_cubit.dart';
+import 'features/more/presentation/controllers/Profile/profile_cubit.dart';
+import 'features/more/presentation/controllers/social_media_cubit/social_media_cubit.dart';
 import 'features/our_projects/data/dataSource/projects_api.dart';
 import 'features/our_projects/presentation/controllers/our_projects_cubit.dart';
 import 'features/our_work/data/dataSource/works_api.dart';
@@ -63,6 +67,8 @@ class MyApp extends StatelessWidget {
   ProjectsApi projectsApi = ProjectsApi();
   WorksApi workApi = WorksApi();
   CartApi cartApi = CartApi();
+  SettingsApi settingsApi = SettingsApi();
+  AccountSettingsApi accountSettingsApi = AccountSettingsApi();
   @override
   Widget build(BuildContext context) {
     if (firstTime != null && firstTime == false) {
@@ -89,6 +95,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => FavProductDetailsListCubit(api, favApi)),
           BlocProvider(create: (context) => OurProjectsCubit(projectsApi)),
           BlocProvider(create: (context) => OurWorkCubit(workApi)),
+          BlocProvider(create: (context) => SocialMediaCubit( api: settingsApi)),
+          BlocProvider(create: (context) => LogoutCubit( api: accountSettingsApi)),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

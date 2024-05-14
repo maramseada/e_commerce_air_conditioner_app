@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../constant/colors.dart';
-import '../../../../../constant/navigator.dart';
+import '../../../../../core/constant/colors.dart';
+import '../../../../../core/constant/navigator.dart';
 import '../../../../../widgets/button.dart';
 import '../../../../BottomBar/BottomBar.dart';
 

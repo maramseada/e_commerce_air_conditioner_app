@@ -1,4 +1,5 @@
-import 'package:e_commerce/Cubits/Profile/profile_cubit.dart';
+import 'package:e_commerce/features/more/presentation/controllers/logout_cubit/logout_cubit.dart';
+import 'package:e_commerce/features/more/presentation/controllers/social_media_cubit/social_media_cubit.dart';
 import 'package:e_commerce/features/more/presentation/screens/guide_lines.dart';
 import 'package:e_commerce/features/screens/login/login.dart';
 import 'package:e_commerce/features/more/presentation/screens/return_policy.dart';
@@ -9,13 +10,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../api/api.dart';
-import '../../../../../constant/colors.dart';
-import '../../../../../constant/navigator.dart';
+import '../../../../../core/constant/colors.dart';
+import '../../../../../core/constant/navigator.dart';
 import '../../../../../models/social_media.dart';
 import '../../../../../utilities/shared_pref.dart';
 import '../../../screens/change_password/change_password.dart';
 import '../components/about_us/aboutCompany.dart';
+import '../components/more_page/logout_button.dart';
+import '../components/more_page/social_media.dart';
 import '../controllers/Favourites_cubit/favourites_cubit.dart';
+import '../controllers/Profile/profile_cubit.dart';
 import 'edit_screen.dart';
 import 'favoritesPage.dart';
 import '../../../screens/locations/saved_location.dart';
@@ -39,6 +43,11 @@ class _morePageState extends State<morePage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController passController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  @override
+  void initState() {
+BlocProvider.of<SocialMediaCubit>(context).getSocialMedia();
+super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -179,129 +188,13 @@ class _morePageState extends State<morePage> {
                   ),
                 ),
               ),
-              FutureBuilder(
-                  future: _api.SocialMedia(),
-                  builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                    if (snapshot.hasError) {
-                      return Center(
-                        child: Text('Error: ${snapshot.error}'),
-                      );
-                    } else if (snapshot.data == null) {
-                      return Container();
-                    } else {
-                      data = snapshot.data;
-                      return Container(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: const Text(
-                          'تابعنا من خلال الروابط التالية',
-                          style: TextStyle(color: Color(0xFF9C9C9C), fontFamily: 'Almarai', fontWeight: FontWeight.bold),
-                        ),
-                      );
-                    }
-                  }),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.04,
-                  vertical: size.height*0.02
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        launchUrl(Uri.parse(data![3].url!));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right:5.0),
-                        child: SvgPicture.asset(
-                          'assets/images/Group 176435.svg',
-                          width: 50,
-                          height: 50,
-                          // Adjust the fit as needed
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        launchUrl(Uri.parse(data![2].url!));
-                      },
- child: Padding(
-                        padding: const EdgeInsets.only(right:5.0),
-                        child: SvgPicture.asset(
-                          'assets/images/Group 176436.svg',
-                          width: 50,
-                          height: 50,
-                          // Adjust the fit as needed
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        launchUrl(Uri.parse(data![0].url!));
-                      },
-
-                      child:Padding(
-                        padding: const EdgeInsets.only(right:5.0),
-                        child: SvgPicture.asset(
-                          'assets/images/Group 176437.svg',
-                          width: 50,
-                          height: 50,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        launchUrl(Uri.parse(data![4].url!));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right:5.0),
-                        child: SvgPicture.asset(
-                          'assets/images/Group 176438.svg',
-                          width: 50,
-                          height: 50,
-                          // Adjust the fit as needed
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        launchUrl(Uri.parse(data![1].url!));
-                      },
-                      child:Padding(
-                        padding: const EdgeInsets.only(right:5.0),
-                        child: SvgPicture.asset(
-                          'assets/images/Group 176439.svg',
-                          width: 50,
-                          height: 50,
-                          // Adjust the fit as needed
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )
+              const SocialMedia(),
             ],
           ),
         ));
   }
 
-  void logout() async {
-    setState(() {
-      delete = true;
-    });
-    try {
-      await _api.logout();
-      await removeString('token');
-      navigateWithoutHistory(context, Login());
-    } catch (e) {
-      print('Network Error: $e');
-    } finally {
-      setState(() {
-        delete = false;
-      });
-    }
-  }
+
 
   Future<void> _showBottomSheet() async {
     Size size = MediaQuery.of(context).size;
@@ -323,72 +216,45 @@ class _morePageState extends State<morePage> {
                 ),
               ),
               child: Center(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: size.height * 0.08, bottom: size.height * 0.01),
-                      child: SvgPicture.asset(
-                        'assets/images/logout.svg',
-                        height: size.height * 0.05,
+                child: Container(
+                  height: 260,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: size.height * 0.08, bottom: size.height * 0.01),
+                        child: SvgPicture.asset(
+                          'assets/images/logout.svg',
+                          height: size.height * 0.05,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'تسجيل الخروج',
-                      style: TextStyle(fontFamily: 'Almarai', fontWeight: FontWeight.bold, fontSize: size.width * 0.04, color: redColor),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: size.height * 0.007,
+                      Text(
+                        'تسجيل الخروج',
+                        style: TextStyle(fontFamily: 'Almarai', fontWeight: FontWeight.bold, fontSize: size.width * 0.04, color: redColor),
                       ),
-                      width: size.width * 0.6,
-                      child: Text(
-                        'هل أنت متأكد من تسجيل الخروج من حسابك ؟',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontFamily: 'Almarai', fontSize: size.width * 0.035, color: grayColor),
+                      Container(
+                        padding: EdgeInsets.only(
+                          top: size.height * 0.007,
+                        ),
+                        width: size.width * 0.6,
+                        child: Text(
+                          'هل أنت متأكد من تسجيل الخروج من حسابك ؟',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontFamily: 'Almarai', fontSize: size.width * 0.035, color: grayColor),
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: size.height * 0.035,
-                        right: size.width * 0.04,
-                        left: size.width * 0.04,
-                      ),
-                      child: InkWell(
-                          onTap: delete ? null : logout,
-                          child: delete
-                              ? const SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-                                    strokeWidth: 2,
-                                  ),
-                                )
-                              : Container(
-                                  width: double.infinity,
-                                  height: size.height * 0.08,
-                                  decoration: ShapeDecoration(
-                                    color: delete ? redColor : redColor,
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(38)),
-                                  ),
-                                  child: Center(
-                                    child: delete
-                                        ? const CircularProgressIndicator(
-                                            color: Colors.white,
-                                          )
-                                        : Text(
-                                            'تأكيد تسجيل الخروج',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: size.width * 0.05,
-                                              fontFamily: 'Almarai',
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                  ),
-                                )),
-                    )
-                  ],
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: size.height * 0.035,
+                          right: size.width * 0.04,
+                          left: size.width * 0.04,
+                        ),
+                        child: InkWell(
+                            onTap:  (){BlocProvider.of<LogoutCubit>(context).logout(context: context);
+                              },
+                            child: LogoutButton()),
+                      )
+                    ],
+                  ),
                 ),
               )),
         );

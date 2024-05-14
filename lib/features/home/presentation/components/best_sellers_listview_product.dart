@@ -4,12 +4,12 @@ import 'package:e_commerce/models/ordermodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../api/api.dart';
-import '../../../../constant/colors.dart';
+import '../../../../core/constant/colors.dart';
 import '../../../../widgets/add_to_cart_button.dart';
 import '../../../detailsProduct/presentation/controller/cart_product_cubit.dart';
 import '../../../detailsProduct/presentation/controller/fav_product_cubit.dart';
 import '../../../detailsProduct/presentation/controller/product/product_details_state.dart';
-import 'package:e_commerce/constant/font_size.dart';
+import 'package:e_commerce/core/constant/font_size.dart';
 import 'package:flutter_svg/svg.dart';
 import '../controllers/best_sellers/best_sellers_cubit.dart';
 

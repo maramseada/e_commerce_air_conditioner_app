@@ -9,7 +9,7 @@ import '../components/add_to_cart_product_contoller.dart';
 import '../controller/cart_product_cubit.dart';
 import '../../../../../api/api.dart';
 
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 import '../../../../../models/ordermodel.dart';
 import '../controller/product/product_details_cubit.dart';
 import '../widgets/Radio.dart';

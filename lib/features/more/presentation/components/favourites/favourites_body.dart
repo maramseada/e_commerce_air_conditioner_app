@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../constant/font_size.dart';
+import '../../../../../core/constant/font_size.dart';
 import '../../../../../models/fav_model.dart';
 import 'empty_favourites.dart';
 import 'favourites_accessory.dart';

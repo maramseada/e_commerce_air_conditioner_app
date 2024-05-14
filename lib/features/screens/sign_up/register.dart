@@ -1,5 +1,5 @@
-import 'package:e_commerce/constant/colors.dart';
-import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/core/constant/colors.dart';
+import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:e_commerce/features/screens/login/login.dart';
 import 'package:e_commerce/widgets/button.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import '../../../Cubits/Auth/auth_cubit.dart';
 import '../../../api/api.dart';
 import '../../../models/user.dart';
-import '../../../constant/images.dart';
+import '../../../core/constant/images.dart';
 import '../../../utilities/shared_pref.dart';
 import '../otp/otp.dart';
 

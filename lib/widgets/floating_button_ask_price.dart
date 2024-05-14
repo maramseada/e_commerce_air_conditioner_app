@@ -1,7 +1,7 @@
-import 'package:e_commerce/constant/font_size.dart';
+import 'package:e_commerce/core/constant/font_size.dart';
 import 'package:flutter/material.dart';
-import '../../constant/colors.dart';
-import '../../constant/navigator.dart';
+import '../../core/constant/colors.dart';
+import '../../core/constant/navigator.dart';
 import '../features/screens/request_prise/request_prise.dart';
 
 class AskPriceFloatingButton extends StatelessWidget {

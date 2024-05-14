@@ -1,4 +1,4 @@
-import 'package:e_commerce/constant/font_size.dart';
+import 'package:e_commerce/core/constant/font_size.dart';
 import 'package:e_commerce/features/home/presentation/controllers/Accessories/accessory_cubit.dart';
 import 'package:e_commerce/features/home/presentation/controllers/fav_accessory/fav_accessory_state.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../api/api.dart';
-import '../../../../constant/colors.dart';
+import '../../../../core/constant/colors.dart';
 import '../../../../models/accessor_model.dart';
 import '../../../../widgets/add_to_cart_button.dart';
 import '../../../detailsProduct/presentation/controller/cart_product_cubit.dart';

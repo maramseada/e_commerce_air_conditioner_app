@@ -1,10 +1,9 @@
 
 import 'package:e_commerce/features/screens/myOrders/widgets/currentOrders.dart';
 import 'package:e_commerce/features/screens/myOrders/widgets/expiredOrders.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 
 class MyOrdersPage extends StatefulWidget {
   const MyOrdersPage({super.key});

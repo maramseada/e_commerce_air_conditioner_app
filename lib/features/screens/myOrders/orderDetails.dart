@@ -1,11 +1,10 @@
-import 'package:e_commerce/constant/colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_commerce/core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../constant/images.dart';
+import '../../../../../core/constant/images.dart';
 import '../../../../../widgets/button.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 

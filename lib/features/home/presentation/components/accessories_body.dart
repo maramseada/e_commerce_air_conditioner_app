@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../api/api.dart';
-import '../../../../constant/colors.dart';
+import '../../../../core/constant/colors.dart';
 import '../../../../models/accessor_model.dart';
 import '../../../detailsProduct/presentation/components/accessory_details.dart';
 import '../controllers/accessory/acessory_details_cubit.dart';

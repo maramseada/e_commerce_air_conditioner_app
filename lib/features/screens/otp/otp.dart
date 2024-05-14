@@ -1,6 +1,6 @@
-import 'package:e_commerce/constant/colors.dart';
-import 'package:e_commerce/constant/images.dart';
-import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/core/constant/colors.dart';
+import 'package:e_commerce/core/constant/images.dart';
+import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:e_commerce/features/screens/sign_up/complete_data.dart';
 import 'package:e_commerce/features/screens/sign_up/register.dart';
 import 'package:e_commerce/widgets/button.dart';

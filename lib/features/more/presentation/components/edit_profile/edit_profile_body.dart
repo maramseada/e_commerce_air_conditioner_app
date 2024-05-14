@@ -1,9 +1,9 @@
-import 'package:e_commerce/Cubits/Profile/profile_cubit.dart';
-import 'package:e_commerce/Cubits/Profile/profile_state.dart';
 import 'package:e_commerce/features/more/presentation/components/edit_profile/success_profile_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../models/profileData.dart';
+import '../../controllers/Profile/profile_cubit.dart';
+import '../../controllers/Profile/profile_state.dart';
 
 class EditProfileBody extends StatelessWidget {
   const EditProfileBody({super.key});

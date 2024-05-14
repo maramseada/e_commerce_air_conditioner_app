@@ -1,5 +1,5 @@
-import 'package:e_commerce/constant/colors.dart';
-import 'package:e_commerce/constant/navigator.dart';
+import 'package:e_commerce/core/constant/colors.dart';
+import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:e_commerce/features/screens/locations/saved_location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

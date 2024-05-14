@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../constant/colors.dart';
+import '../../../../../core/constant/colors.dart';
 import '../components/our_work/our_work_body.dart';
 
 class OurWorkPage extends StatefulWidget {

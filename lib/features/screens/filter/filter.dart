@@ -4,9 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../api/api.dart';
-import '../../../constant/colors.dart';
-import '../../../constant/images.dart';
-import '../../../constant/navigator.dart';
+import '../../../core/constant/colors.dart';
+import '../../../core/constant/images.dart';
+import '../../../core/constant/navigator.dart';
 import '../../../models/brandModel.dart';
 import '../../../models/ordermodel.dart';
 import '../../../widgets/button.dart';

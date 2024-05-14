@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../api/api.dart';
-import '../../../../constant/colors.dart';
-import '../../../../constant/font_size.dart';
+import '../../../../core/constant/colors.dart';
+import '../../../../core/constant/font_size.dart';
 import '../../../../models/accessor_model.dart';
 import '../../../../widgets/add_to_cart_button.dart';
 import '../../../detailsProduct/presentation/controller/cart_product_cubit.dart';

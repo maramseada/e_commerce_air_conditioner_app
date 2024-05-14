@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../../../../constant/app_constants.dart';
-import '../../../../../constant/colors.dart';
-import '../../../../../constant/font_size.dart';
-import '../../../../../constant/navigator.dart';
+import '../../../../../core/constant/app_constants.dart';
+import '../../../../../core/constant/colors.dart';
+import '../../../../../core/constant/font_size.dart';
+import '../../../../../core/constant/navigator.dart';
 import '../../../../screens/request_prise/request_prise.dart';
 import '../../../data/models/works.dart';
 
@@ -30,7 +30,7 @@ class OurWorkListItem extends StatelessWidget {
                 topLeft: Radius.circular(20),
               ),
               child: CachedNetworkImage(
-                imageUrl: '$baseUrl${work.image}',
+                imageUrl: '${AppConstants.baseUrl}${work.image}',
               )),
           SizedBox(height: size.height * 0.03),
           Padding(

@@ -9,8 +9,8 @@ import 'package:e_commerce/features/home/presentation/screens/show_bestsellers.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../constant/font_size.dart';
-import '../../../../../constant/navigator.dart';
+import '../../../../../core/constant/font_size.dart';
+import '../../../../../core/constant/navigator.dart';
 
 import '../components/category_grid_view.dart';
 import '../components/home_body_appbar.dart';

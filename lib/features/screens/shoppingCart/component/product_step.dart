@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../api/cart_api.dart';
-import '../../../../constant/colors.dart';
-import '../../../../constant/images.dart';
+import '../../../../core/constant/colors.dart';
+import '../../../../core/constant/images.dart';
 import '../../../../models/cart_model.dart';
 import '../../../detailsProduct/presentation/widgets/Radio.dart';
 

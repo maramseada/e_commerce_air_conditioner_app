@@ -1,4 +1,4 @@
-import 'package:e_commerce/constant/colors.dart';
+import 'package:e_commerce/core/constant/colors.dart';
 import 'package:e_commerce/features/screens/shoppingCart/component/pay_step.dart';
 import 'package:e_commerce/features/screens/shoppingCart/component/product_step.dart';
 import 'package:flutter/material.dart';

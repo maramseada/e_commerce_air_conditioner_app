@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constant/colors.dart';
+import '../core/constant/colors.dart';
 
  class AppStyles{
   InputBorder outlineBorder =  OutlineInputBorder(

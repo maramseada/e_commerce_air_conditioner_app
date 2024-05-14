@@ -1,11 +1,11 @@
-import 'package:e_commerce/constant/colors.dart';
+import 'package:e_commerce/core/constant/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../api/api.dart';
-import '../../../../../constant/images.dart';
+import '../../../../../core/constant/images.dart';
 import '../../../../../models/homeModel.dart';
 import '../../../../../models/settingsModel.dart';
 
