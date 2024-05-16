@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../api/api.dart';
 import '../../../../../models/profileData.dart';
+import '../../../data/dataSource/settings_data_source.dart';
 import '../../components/edit_profile/delete_account_sheet.dart';
 import 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
 
-  Api api;
+  SettingsApi api;
   profileData? user;
   ProfileCubit(this.api) : super(ProfileInitial());
 
@@ -42,5 +43,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       },
     );
   }
+
+
 }
 

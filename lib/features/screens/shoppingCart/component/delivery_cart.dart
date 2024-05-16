@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constant/colors.dart';
 import '../../../../core/constant/images.dart';
-import '../../locations/add_address.dart';
-import '../shoppingCartPage.dart';
+import '../../../more/presentation/screens/locations/add_address.dart';
+
 
 class DeliveryStep extends StatefulWidget {
   const DeliveryStep({Key? key, this.formKey, required this.onNextStep, required this.onBackStep, this.isActive = false}) : super(key: key);

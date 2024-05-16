@@ -26,9 +26,13 @@ import 'features/home/presentation/controllers/best_sellers/best_sellers_cubit.d
 import 'features/home/presentation/controllers/fav_accessory/fav_accessory_cubit.dart';
 import 'features/home/presentation/controllers/fav_products_list/fav_products_list_cubit.dart';
 import 'features/more/data/dataSource/account_settings_data_source.dart';
+import 'features/more/data/dataSource/address_api.dart';
+import 'features/more/data/dataSource/orders_data_source.dart';
 import 'features/more/data/dataSource/settings_data_source.dart';
 import 'features/more/presentation/controllers/Favourites_cubit/favourites_cubit.dart';
 import 'features/more/presentation/controllers/Profile/profile_cubit.dart';
+import 'features/more/presentation/controllers/locations_cubit/locations_cubit.dart';
+import 'features/more/presentation/controllers/orders_cubit/orders_cubit.dart';
 import 'features/more/presentation/controllers/social_media_cubit/social_media_cubit.dart';
 import 'features/our_projects/data/dataSource/projects_api.dart';
 import 'features/our_projects/presentation/controllers/our_projects_cubit.dart';
@@ -69,6 +73,8 @@ class MyApp extends StatelessWidget {
   CartApi cartApi = CartApi();
   SettingsApi settingsApi = SettingsApi();
   AccountSettingsApi accountSettingsApi = AccountSettingsApi();
+  OrdersApi ordersApi = OrdersApi();
+  ApiAddress addressApi = ApiAddress();
   @override
   Widget build(BuildContext context) {
     if (firstTime != null && firstTime == false) {
@@ -97,6 +103,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => OurWorkCubit(workApi)),
           BlocProvider(create: (context) => SocialMediaCubit( api: settingsApi)),
           BlocProvider(create: (context) => LogoutCubit( api: accountSettingsApi)),
+
+          BlocProvider(create: (context) => OrdersCubit(  ordersApi)),
+          BlocProvider(create: (context) => LocationsCubit(   addressApi: addressApi)),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -104,12 +113,12 @@ class MyApp extends StatelessWidget {
           builder: DevicePreview.appBuilder,
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
-            colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff035B97)),
+            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff035B97)),
             useMaterial3: true,
           ),
           routes: {
             Register.routeName: (context) => Register(),
-            ForgetPass.routeName: (context) => ForgetPass(),
+            ForgetPass.routeName: (context) => const ForgetPass(),
             NewPass.routeName: (context) => NewPass(),
             // CompleteData.routeName: (context) => CompleteData(),
             // NewPass.routeName: (context) => NewPass(),
@@ -123,7 +132,7 @@ class MyApp extends StatelessWidget {
       if (token != null) {
         return BottomBarPage();
       } else {
-        return SplashScreen();
+        return const SplashScreen();
       }
     } else {
       return Login();

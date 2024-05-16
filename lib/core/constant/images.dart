@@ -24,3 +24,6 @@ const String brown = 'assets/images/brownn.png';
 const String blueLine = 'assets/images/blueline.png';
 
 
+const String emptyOrders = 'assets/images/emptyorder.svg';
+
+

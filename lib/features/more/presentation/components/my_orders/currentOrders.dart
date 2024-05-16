@@ -1,0 +1,58 @@
+import 'package:e_commerce/features/more/presentation/controllers/orders_cubit/orders_cubit.dart';
+import 'package:e_commerce/features/more/presentation/controllers/orders_cubit/orders_state.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../models/ordermodel.dart';
+import '../../screens/my_orders_screens/emptyOrders.dart';
+
+import 'order.dart';
+
+class CurrentOrders extends StatefulWidget {
+  CurrentOrders({
+    Key? key,
+    required this.onNextStep,
+    required this.formKey,
+  }) : super(key: key);
+
+  final VoidCallback onNextStep;
+  final formKey;
+
+  @override
+  State<CurrentOrders> createState() => _CurrentOrdersState();
+}
+
+class _CurrentOrdersState extends State<CurrentOrders> {
+  @override
+  void initState() {
+    BlocProvider.of<OrdersCubit>(context).getCurrentOrders();    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<OrdersCubit, OrdersState>(builder: (BuildContext context, state) {
+      if (state is OrdersLoading) {
+        return const Center(child: CircularProgressIndicator());
+      } else if (state is OrdersSuccess) {
+        late List<OrderModel> orders;
+        orders = BlocProvider.of<OrdersCubit>(context).orders;
+        if (orders.isNotEmpty) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 200),
+              child: Column(
+                children: List.generate(
+                  orders.length,
+                  (index) => Order(orderItem: orders[index]), // Assuming Order is a widget or a function returning a widget
+                ),
+              ),
+            ),
+          );
+        } else {
+          return const EmptyOrders();
+        }
+      } else {
+        return const SizedBox();
+      }
+    });
+  }
+}

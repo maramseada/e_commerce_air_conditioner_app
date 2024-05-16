@@ -21,9 +21,9 @@ import '../components/more_page/social_media.dart';
 import '../controllers/Favourites_cubit/favourites_cubit.dart';
 import '../controllers/Profile/profile_cubit.dart';
 import 'edit_screen.dart';
-import 'favoritesPage.dart';
-import '../../../screens/locations/saved_location.dart';
-import '../../../screens/myOrders/myorders.dart';
+import 'favorites_page.dart';
+import 'locations/saved_location.dart';
+import 'my_orders_screens/myorders.dart';
 
 class morePage extends StatefulWidget {
   const morePage({super.key});
@@ -82,7 +82,6 @@ super.initState();
               ),
               InkWell(
                 onTap: () {
-                  BlocProvider.of<FavouritesCubit>(context).favouriteProducts();
                   navigateTo(context, const FavoritesScreen());
                 },
                 child: Center(
@@ -216,7 +215,7 @@ super.initState();
                 ),
               ),
               child: Center(
-                child: Container(
+                child: SizedBox(
                   height: 260,
                   child: Column(
                     children: [
@@ -251,7 +250,7 @@ super.initState();
                         child: InkWell(
                             onTap:  (){BlocProvider.of<LogoutCubit>(context).logout(context: context);
                               },
-                            child: LogoutButton()),
+                            child: const LogoutButton()),
                       )
                     ],
                   ),

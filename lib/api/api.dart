@@ -40,42 +40,10 @@ class Api {
     return data;
   }
 
-  Future<Map<String, dynamic>?> changePassword(String firstPassword, String secondPassword, String currentPassword) async {
-    Map<String, dynamic>? data;
-    try {
-      Map<String, String> headers = {};
-      final url ='${AppConstants.baseUrl}/api/change/password';
-
-      final token = await getString('token');
-      debugPrint('Token: $token');
-
-      if (token != null) {
-        headers.addAll({'Authorization': 'Bearer $token'});
-      }
-
-      http.Response response = await http.post(Uri.parse(url),
-          body: {
-            'password': firstPassword,
-            'password_confirmation': secondPassword,
-            'current_password': currentPassword,
-          },
-          headers: headers);
-
-      if (response.statusCode == 200 || response.statusCode == 422) {
-        Map<String, dynamic> data = jsonDecode(response.body);
-        return data;
-      } else {
-        debugPrint("========== ${response.statusCode}");
-      }
-    } catch (e, stackTrace) {
-      debugPrint(' $e $stackTrace');
-    }
-    return data;
-  }
 
   Future<dynamic> deleteAcc(String email, String password) async {
     Map<String, String> headers = {};
-    final url = '${AppConstants.baseUrl}/api/deleteAccount';
+    const url = '${AppConstants.baseUrl}/api/deleteAccount';
 
     final token = await getString('token');
     debugPrint('===$token');
@@ -94,94 +62,9 @@ class Api {
       return data;
     } else {
       throw Exception('error data not valid ${response.statusCode} with body ${jsonDecode(response.body)}');
-      // can be       throw Exception($jsonDecode(response.body));
     }
   }
 
-  Future<profileData?> getDataProfile() async {
-    profileData? user;
-    final url = '${AppConstants.baseUrl}/api/profile';
-    try {
-      final dio = Dio();
-
-      final token = await getString('token');
-      if (token != null) {
-        dio.options.headers['Authorization'] = 'Bearer $token';
-      }
-
-      final response = await dio.get(url);
-      if (response.statusCode == 200 || response.statusCode == 422) {
-        final responseData = response.data;
-        if (responseData != null) {
-          //  final data = responseData["data"];
-          user = profileData.fromJson(response.data["data"]);
-        } else {
-          throw Exception('Invalid response or status code');
-        }
-      } else {
-        throw Exception('Failed to fetch profile data (${response.statusCode})');
-      }
-    } catch (e, stackTrace) {
-      debugPrint(' $e $stackTrace');
-
-      throw Exception('Error fetching profile data');
-    }
-    return user;
-  }
-
-  Future<profileData?> updateAcc(String fName, String lName, String phone) async {
-    try {
-      Map<String, String> headers = {};
-      final dio = Dio();
-
-      final url = '${AppConstants.baseUrl}/api/update/profile';
-
-      final token = await getString('token');
-      debugPrint('Token: $token');
-
-      if (token != null) {
-        headers.addAll({'Authorization': 'Bearer $token'});
-      }
-
-      // Check if at least one field is not empty
-      if (fName.isNotEmpty || lName.isNotEmpty || phone.isNotEmpty) {
-        Map<String, String> requestBody = {};
-
-        if (fName.isNotEmpty) {
-          requestBody['f_name'] = fName;
-        }
-        if (lName.isNotEmpty) {
-          requestBody['l_name'] = lName;
-        }
-        if (phone.isNotEmpty) {
-          requestBody['phone'] = phone;
-        }
-
-        final response = await dio.post(
-          url,
-          data: requestBody,
-          options: Options(
-            headers: headers // Set the content-length.
-            ,
-          ),
-        );
-
-        if (response.statusCode == 200 || response.statusCode == 422) {
-          profileData? data = profileData.fromJson(response.data["data"]);
-          return data;
-        } else {
-          throw Exception('Error: Unexpected status code ${response.statusCode}');
-        }
-      } else {
-        debugPrint('All fields are empty');
-        return null;
-      }
-    } catch (e, stackTrace) {
-      debugPrint(' $e $stackTrace');
-
-      throw Exception('An error occurred while updating profile');
-    }
-  }
 
   Future<Map<String, dynamic>?> resertPassword(
     String email,
@@ -941,4 +824,6 @@ class Api {
       throw Exception('error data not valid ${response.statusCode} with body ${jsonDecode(response.body)}');
     }
   }
+
+
 }

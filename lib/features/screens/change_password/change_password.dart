@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../../api/api.dart';
 import '../../../../../core/constant/colors.dart';
 import '../../../../../widgets/button.dart';
+import '../../more/data/dataSource/settings_data_source.dart';
 import '../forget_password/foget_pass/forget_pass.dart';
 
 class ChangePasswordS extends StatefulWidget {
@@ -15,15 +16,15 @@ class ChangePasswordS extends StatefulWidget {
   @override
   State<ChangePasswordS> createState() => _ChangePasswordSState();
 }
-
+String? secondPassword;
+String? firstPassword;
+String? password;
 class _ChangePasswordSState extends State<ChangePasswordS> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController currentPasswordController = TextEditingController();
   TextEditingController secondPasswordController = TextEditingController();
   TextEditingController firstPasswordController = TextEditingController();
-  String? secondPassword;
-  String? firstPassword;
-  String? password;
+
   String? errorPass;
   String? errorPassFirst;
   String? errorPassSecond;
@@ -32,7 +33,7 @@ class _ChangePasswordSState extends State<ChangePasswordS> {
   bool firstPasswordVisible = false;
   bool confirmPasswordVisible = false;
   bool currentPasswordVisible = false;
-  final _api = Api();
+  final _api = SettingsApi();
   List<String> errors = [];
 
   @override
@@ -80,7 +81,7 @@ class _ChangePasswordSState extends State<ChangePasswordS> {
           ),
           body: SafeArea(
               child: SingleChildScrollView(
-            physics: ScrollPhysics(),
+            physics: const ScrollPhysics(),
             child: Column(
               children: [
                 Form(
@@ -519,27 +520,11 @@ class _ChangePasswordSState extends State<ChangePasswordS> {
         print('password: $password');
 
         if (response != null && response['status'] == 200) {
-          Fluttertoast.showToast(
-            msg: response['message'],
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: kPrimaryColor,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
+ ;
           Navigator.pop(context);
           print('Account update success');
         } else if (response != null && response['status'] == 422) {
-          Fluttertoast.showToast(
-            msg: response['message'],
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: kPrimaryColor,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
+
         } else {
           if (response != null && response['message'] != null) {
             setState(() {
