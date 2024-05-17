@@ -1,5 +1,6 @@
 import 'package:e_commerce/core/constant/colors.dart';
 import 'package:flutter/material.dart';
+
 class Button extends StatefulWidget {
   final String text;
   final bool inProgress;
@@ -16,28 +17,22 @@ class _ButtonState extends State<Button> {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-    padding: EdgeInsets.symmetric(vertical: size.height*0.015),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       width: double.infinity,
-    //  height: size.height*0.08,
 
-      decoration: BoxDecoration(
-          color:widget.inProgress ? kPrimaryColorDark:kPrimaryColor,
-
-          borderRadius: BorderRadius.circular(30)
-      ),
+      decoration: BoxDecoration(color: widget.inProgress ? kPrimaryColorDark : kPrimaryColor, borderRadius: BorderRadius.circular(30)),
       child: Center(
-
         child: widget.inProgress
-            ? CircularProgressIndicator()
+            ? const CircularProgressIndicator()
             : Text(
-          widget.text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: size.width*0.05,
-            fontFamily: 'Almarai',
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+                widget.text,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: size.width * 0.05,
+                  fontFamily: 'Almarai',
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
       ),
     );
   }

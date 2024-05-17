@@ -14,7 +14,7 @@ import '../../../../../core/constant/colors.dart';
 import '../../../../../core/constant/navigator.dart';
 import '../../../../../models/social_media.dart';
 import '../../../../../utilities/shared_pref.dart';
-import '../../../screens/change_password/change_password.dart';
+import 'change_password.dart';
 import '../components/about_us/aboutCompany.dart';
 import '../components/more_page/logout_button.dart';
 import '../components/more_page/social_media.dart';

@@ -44,40 +44,40 @@ class SettingsApi{
   }
 
 
+
   Future<Map<String, dynamic>?> changePassword(String firstPassword, String secondPassword, String currentPassword) async {
-    Map<String, dynamic>? data;
     try {
-      Map<String, String> headers = {};
-      final url ='${AppConstants.baseUrl}/api/change/password';
+      final dio = Dio();
+      dio.options.headers['Content-Type'] = 'application/json';
 
       final token = await getString('token');
       debugPrint('Token: $token');
 
       if (token != null) {
-        headers.addAll({'Authorization': 'Bearer $token'});
+        dio.options.headers['Authorization'] = 'Bearer $token';
       }
 
-      http.Response response = await http.post(Uri.parse(url),
-          body: {
-            'password': firstPassword,
-            'password_confirmation': secondPassword,
-            'current_password': currentPassword,
-          },
-          headers: headers);
+      final response = await dio.post(
+        '${AppConstants.baseUrl}/api/change/password',
+        data: {
+          'password': firstPassword,
+          'password_confirmation': secondPassword,
+          'current_password': currentPassword,
+        },
+      );
 
-      if (response.statusCode == 200 || response.statusCode == 422) {
-        Map<String, dynamic> data = jsonDecode(response.body);
-        return data;
+      if (response.statusCode == 200) {
+        return response.data;
       } else {
-        debugPrint("========== ${response.statusCode}");
+        throw Exception('Failed to change password: ${response.statusCode} - ${response.data}');
       }
     } catch (e, stackTrace) {
-      debugPrint(' $e $stackTrace');
+      debugPrint('Error: $e');
+      debugPrint('StackTrace: $stackTrace');
+      // You can also return a custom error message in the map if needed
+      return {'error': e.toString()};
     }
-    return data;
   }
-
-
   Future<profileData?> getDataProfile() async {
     profileData? user;
     const url = '${AppConstants.baseUrl}/api/profile';
