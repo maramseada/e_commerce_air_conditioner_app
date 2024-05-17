@@ -1,10 +1,7 @@
 import 'package:e_commerce/core/constant/text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../../../api/api.dart';
 import '../../../../../core/constant/colors.dart';
 import '../../../../../models/profileData.dart';
 import '../../../../../utilities/app_styles.dart';
@@ -17,7 +14,6 @@ class SuccessProfileData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final _api = Api();
     String fName;
     String lName;
     String phone;
@@ -139,7 +135,6 @@ class SuccessProfileData extends StatelessWidget {
                     ),
                     filled: true,
                     fillColor:  paleGrayColor,
-                    contentPadding: EdgeInsets.symmetric(vertical: 0),
                     enabledBorder: AppStyles().outlineBorder,
                     focusedBorder: AppStyles().outlineBorder,
                     errorBorder: AppStyles().outlineBorder,

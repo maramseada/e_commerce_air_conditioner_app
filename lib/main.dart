@@ -1,6 +1,7 @@
 import 'package:e_commerce/api/api.dart';
 import 'package:e_commerce/features/BottomBar/BottomBar.dart';
 import 'package:e_commerce/features/more/presentation/controllers/change_password_cubit/change_password_cubit.dart';
+import 'package:e_commerce/features/more/presentation/controllers/guidlines_cubit/guidlines_cubit.dart';
 import 'package:e_commerce/features/more/presentation/controllers/logout_cubit/logout_cubit.dart';
 import 'package:e_commerce/features/screens/forget_password/foget_pass/forget_pass.dart';
 import 'package:e_commerce/features/screens/forget_password/new_pass/new_pass.dart';
@@ -108,6 +109,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => OrdersCubit(  ordersApi)),
           BlocProvider(create: (context) => LocationsCubit(   addressApi: addressApi)),
           BlocProvider(create: (context) => ChangePasswordCubit( settingsApi )),
+          BlocProvider(create: (context) => GuidLinesCubit(  api: settingsApi, apiHome: api )),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

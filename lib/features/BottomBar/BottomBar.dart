@@ -8,7 +8,7 @@ import '../home/presentation/controllers/Carousel/carousel_cubit.dart';
 import '../home/presentation/controllers/Home/home_cubit.dart';
 import '../home/presentation/controllers/best_sellers/best_sellers_cubit.dart';
 import '../home/presentation/screens/home.dart';
-import '../more/presentation/screens/morePage.dart';
+import '../more/presentation/screens/more_page.dart';
 import '../our_projects/presentation/screens/our_projects_page.dart';
 import '../our_work/presentation/controllers/our_work_cubit.dart';
 import '../our_work/presentation/screens/ourWorkPage.dart';
@@ -27,12 +27,12 @@ class _BottomBarPageState extends State<BottomBarPage> {
   // static const TextStyle optionStyle =
   // TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  List _widgetOptions = [
+  final List _widgetOptions = [
     HomePage(),
     ShoppingPage(),
     OurProjectsPage(),
     OurWorkPage(),
-    morePage(),
+    MorePage(),
   ];
   @override
   void initState() {

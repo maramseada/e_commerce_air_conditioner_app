@@ -31,9 +31,16 @@ class LocationsCubit extends Cubit<LocationsState> {
   void updateAddress({required int id, required BuildContext context}) async {
     emit(LocationsUpdateAddressLoading());
     try {
-      await addressApi.updateAddress(address: Address(id: id, street: street!, buildingNum: buildingText!, landmark: landmark!, townId: townId));
-
-      emit(LocationsUpdateAddressSuccess());
+    final response =   await addressApi.updateAddress(address: Address(id: id, street: street!, buildingNum: buildingText!, landmark: landmark!, townId: townId));
+      if (response != null) {
+        if (response['status'] == 200) {
+          emit(LocationsUpdateAddressSuccess());
+        } else {
+          emit(LocationsUpdateAddressFailure(errMessage: 'update address failed'));
+        }
+      } else {
+        emit(LocationsUpdateAddressFailure(errMessage: 'response is null'));
+      }
     } catch (e, stackTrace) {
       emit(LocationsUpdateAddressFailure(errMessage: '$e $stackTrace'));
     }

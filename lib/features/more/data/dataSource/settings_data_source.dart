@@ -5,19 +5,18 @@ import 'package:e_commerce/core/constant/app_constants.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../models/profileData.dart';
+import '../../../../models/settingsModel.dart';
 import '../../../../models/social_media.dart';
 import '../../../../utilities/shared_pref.dart';
 import 'package:http/http.dart' as http;
 
-class SettingsApi{
+class SettingsApi {
   final dio = Dio();
 
   Future socialMedia() async {
     List<SocialMediaModel>? data;
     const url = '${AppConstants.baseUrl}/api/settings/social-urls';
     try {
-
-
       final token = await getString('token');
       if (token != null) {
         dio.options.headers['Authorization'] = 'Bearer $token';
@@ -42,8 +41,6 @@ class SettingsApi{
     }
     return data;
   }
-
-
 
   Future<Map<String, dynamic>?> changePassword(String firstPassword, String secondPassword, String currentPassword) async {
     try {
@@ -78,6 +75,7 @@ class SettingsApi{
       return {'error': e.toString()};
     }
   }
+
   Future<profileData?> getDataProfile() async {
     profileData? user;
     const url = '${AppConstants.baseUrl}/api/profile';
@@ -161,5 +159,68 @@ class SettingsApi{
 
       throw Exception('An error occurred while updating profile');
     }
+  }
+
+  Future privacyPolicy() async {
+    List<SettingsModel>? data;
+    const url = '${AppConstants.baseUrl}/api/settings/privacy_policy';
+    try {
+      final dio = Dio();
+
+      final token = await getString('token');
+      if (token != null) {
+        dio.options.headers['Authorization'] = 'Bearer $token';
+      }
+
+      final response = await dio.get(url);
+      if (response.statusCode == 200 || response.statusCode == 422) {
+        final responseData = response.data;
+        if (responseData != null) {
+          //  final data = responseData["data"];
+          final List<dynamic> productList = responseData["data"];
+          data = productList.map((data) => SettingsModel.fromJson(data)).toList();
+        } else {
+          throw Exception('Invalid response or status code');
+        }
+      } else {
+        throw Exception('Failed to fetch privacyPolicy (${response.statusCode})');
+      }
+    } catch (e, stackTrace) {
+      debugPrint(' $e $stackTrace');
+
+      throw Exception('Error fetching privacyPolicy');
+    }
+    return data;
+  }
+
+  Future exchangePolicy() async {
+    List<SettingsModel>? data;
+    const url = '${AppConstants.baseUrl}/api/settings/privacy_policy';
+    try {
+      final dio = Dio();
+
+      final token = await getString('token');
+      if (token != null) {
+        dio.options.headers['Authorization'] = 'Bearer $token';
+      }
+
+      final response = await dio.get(url);
+      if (response.statusCode == 200 || response.statusCode == 422) {
+        final responseData = response.data;
+        if (responseData != null) {
+          final List<dynamic> productList = responseData["data"];
+          data = productList.map((data) => SettingsModel.fromJson(data)).toList();
+        } else {
+          throw Exception('Invalid response or status code');
+        }
+      } else {
+        throw Exception('Failed to fetch exchangePolicy (${response.statusCode})');
+      }
+    } catch (e, stackTrace) {
+      debugPrint(' $e $stackTrace');
+
+      throw Exception('Error fetching exchangePolicy');
+    }
+    return data;
   }
 }
