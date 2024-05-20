@@ -1,5 +1,8 @@
 import 'package:e_commerce/api/api.dart';
 import 'package:e_commerce/features/BottomBar/BottomBar.dart';
+import 'package:e_commerce/features/home/data/dataSource/home_data_source.dart';
+import 'package:e_commerce/features/home/presentation/controllers/filter/filter_cubit.dart';
+import 'package:e_commerce/features/home/presentation/controllers/search/search_cubit.dart';
 import 'package:e_commerce/features/more/presentation/controllers/change_password_cubit/change_password_cubit.dart';
 import 'package:e_commerce/features/more/presentation/controllers/guidlines_cubit/guidlines_cubit.dart';
 import 'package:e_commerce/features/more/presentation/controllers/logout_cubit/logout_cubit.dart';
@@ -14,19 +17,21 @@ import 'package:e_commerce/utilities/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'Cubits/Images/image_cubit.dart';
 import 'api/cart_api.dart';
 import 'api/fav_api.dart';
 import 'core/utiles/simple_bloc_observer.dart';
 import 'features/detailsProduct/presentation/controller/cart_product_cubit.dart';
 import 'features/detailsProduct/presentation/controller/fav_product_cubit.dart';
 import 'features/detailsProduct/presentation/controller/product/product_details_cubit.dart';
+import 'features/home/data/dataSource/categories_data_source.dart';
+import 'features/home/data/dataSource/filter_data_source.dart';
 import 'features/home/presentation/controllers/Accessories/accessory_cubit.dart';
 import 'features/home/presentation/controllers/accessory/acessory_details_cubit.dart';
 import 'features/home/presentation/controllers/best_sellers/best_sellers_cubit.dart';
+import 'features/home/presentation/controllers/categories/categories_cubit.dart';
 import 'features/home/presentation/controllers/fav_accessory/fav_accessory_cubit.dart';
 import 'features/home/presentation/controllers/fav_products_list/fav_products_list_cubit.dart';
+import 'features/home/presentation/controllers/filter/brands_cubit.dart';
 import 'features/more/data/dataSource/account_settings_data_source.dart';
 import 'features/more/data/dataSource/address_api.dart';
 import 'features/more/data/dataSource/orders_data_source.dart';
@@ -77,7 +82,10 @@ class MyApp extends StatelessWidget {
   AccountSettingsApi accountSettingsApi = AccountSettingsApi();
   OrdersApi ordersApi = OrdersApi();
   ApiAddress addressApi = ApiAddress();
-  @override
+  FilterDataSource filterApi = FilterDataSource();
+  CategoriesDataSource categoryApi = CategoriesDataSource();
+  HomeDataSource homeApi = HomeDataSource();
+@override
   Widget build(BuildContext context) {
     if (firstTime != null && firstTime == false) {
       openSign = true;
@@ -91,15 +99,15 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => ProfileCubit(settingsApi)),
           BlocProvider(create: (context) => ProductDetailsCubit(api, favApi, cartApi)),
-          BlocProvider(create: (context) => HomeCubit(api, favApi, cartApi)),
+          BlocProvider(create: (context) => HomeCubit(homeApi)),
           BlocProvider(create: (context) => AccessoryDetailsCubit(api, favApi, cartApi)),
-          BlocProvider(create: (context) => BestSellersCubit(api : api,)..getBestSellers()),
+          BlocProvider(create: (context) => BestSellersCubit(api : homeApi,)..getBestSellers()),
           BlocProvider(create: (context) => FavProductDetailsCubit(api:api, favApi:favApi )),
           BlocProvider(create: (context) => CartProductDetailsCubit(api, cartApi)),
-          BlocProvider(create: (context) => CarouselHomeCubit(api)),
+          BlocProvider(create: (context) => CarouselHomeCubit(homeApi)),
           BlocProvider(create: (context) => FavouritesCubit(favApi:favApi)),
           BlocProvider(create: (context) => FavAccessoryCubit(api:api , favApi:  favApi)),
-          BlocProvider(create: (context) => AccessoryCubit(api:api)..getAccessory()),
+          BlocProvider(create: (context) => AccessoryCubit(api:homeApi)..getAccessory()),
           BlocProvider(create: (context) => FavProductDetailsListCubit(api, favApi)),
           BlocProvider(create: (context) => OurProjectsCubit(projectsApi)),
           BlocProvider(create: (context) => OurWorkCubit(workApi)),
@@ -109,7 +117,11 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => OrdersCubit(  ordersApi)),
           BlocProvider(create: (context) => LocationsCubit(   addressApi: addressApi)),
           BlocProvider(create: (context) => ChangePasswordCubit( settingsApi )),
-          BlocProvider(create: (context) => GuidLinesCubit(  api: settingsApi, apiHome: api )),
+          BlocProvider(create: (context) => FilterCubit( filterApi )),
+          BlocProvider(create: (context) => BrandsCubit( filterApi )),
+          BlocProvider(create: (context) => CategoriesCubit( categoryApi )),
+          BlocProvider(create: (context) => SearchCubit( homeApi )),
+          BlocProvider(create: (context) => GuidLinesCubit(  api: settingsApi, apiHome: homeApi )),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

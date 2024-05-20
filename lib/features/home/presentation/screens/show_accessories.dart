@@ -3,7 +3,7 @@ import 'package:e_commerce/widgets/floating_button_ask_price.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../models/accessor_model.dart';
-import '../components/accessories_body.dart';
+import '../components/accessories/accessories_body.dart';
 import '../controllers/Accessories/accessory_cubit.dart';
 import '../controllers/Accessories/accessory_state.dart';
 

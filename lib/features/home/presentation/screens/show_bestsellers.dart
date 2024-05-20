@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../models/ordermodel.dart';
-
-import '../../../detailsProduct/presentation/controller/fav_product_cubit.dart';
-import '../components/best_sellers_body.dart';
-import '../controllers/best_sellers/best_sellers_cubit.dart';
-import '../controllers/best_sellers/best_sellers_state.dart';
 import '../../../../widgets/floating_button_ask_price.dart';
+import '../components/best_sellers/best_sellers_body_bloc.dart';
+
 
 class ShowBestSellers extends StatefulWidget {
   final String productName;
@@ -17,7 +12,6 @@ class ShowBestSellers extends StatefulWidget {
   State<ShowBestSellers> createState() => _ShowBestSellersState();
 }
 
-List<ProductsModel>? products;
 
 class _ShowBestSellersState extends State<ShowBestSellers> {
   @override
@@ -44,30 +38,7 @@ class _ShowBestSellersState extends State<ShowBestSellers> {
             color: Colors.blue,
           ),
         ),
-        body: BlocConsumer<BestSellersCubit, BestSellersState>(
-          builder: (BuildContext context, state) {
-            if (state is BestSellersLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (state is BestSellersSuccess) {
-              products = BlocProvider.of<BestSellersCubit>(context).products;
-              BlocProvider.of<FavProductDetailsCubit>(context).loadInitialData();
-              return BestSellersBody(products: products);
-            } else if (state is BestSellersFailure) {
-              return const Center(child: Text('يوجد مشكلة في الاتصال بالانترنت '));
-            } else {
-              return const SizedBox();
-            }
-          },
-          listener: (BuildContext context, BestSellersState state) {
-            if (state is BestSellersSuccess) {
-              products = BlocProvider.of<BestSellersCubit>(context).products;
-      
-      
-            }
-          },
-        ),
+        body: const BestSellersBodyBloc(),
         floatingActionButton: const AskPriceFloatingButton(),
       ),
     );

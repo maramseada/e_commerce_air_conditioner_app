@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../core/constant/font_size.dart';
 import '../../../../../core/constant/navigator.dart';
-import '../../../screens/search/search.dart';
+import '../screens/search.dart';
 
 class HomeAppBar extends StatelessWidget {
   final HomeModel? home;

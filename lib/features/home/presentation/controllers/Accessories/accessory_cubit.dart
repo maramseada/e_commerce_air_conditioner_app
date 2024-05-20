@@ -1,4 +1,5 @@
 
+import 'package:e_commerce/features/home/data/dataSource/home_data_source.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../api/api.dart';
@@ -6,7 +7,7 @@ import '../../../../../models/accessor_model.dart';
 import 'accessory_state.dart';
 
 class AccessoryCubit extends Cubit<AccessoryState> {
-  Api? api;
+  HomeDataSource? api;
 
   List<AccessoryModel>? products;
   AccessoryCubit({this.api}) : super(AccessoryInitial());

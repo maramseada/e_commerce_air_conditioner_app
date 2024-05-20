@@ -1,18 +1,14 @@
 import 'package:e_commerce/features/home/presentation/controllers/Accessories/accessory_cubit.dart';
-import 'package:e_commerce/features/home/presentation/controllers/best_sellers/best_sellers_state.dart';
 import 'package:e_commerce/models/homeModel.dart';
-import 'package:e_commerce/features/home/presentation/components/best_sellers_list_view.dart';
+import 'package:e_commerce/features/home/presentation/components/best_sellers_home/best_sellers_list_view.dart';
 import 'package:e_commerce/features/home/presentation/components/carousel.dart';
-import 'package:e_commerce/features/home/presentation/components/accessories_list_view.dart';
+import 'package:e_commerce/features/home/presentation/components/accessories_home/accessories_list_view.dart';
 import 'package:e_commerce/features/home/presentation/screens/show_accessories.dart';
 import 'package:e_commerce/features/home/presentation/screens/show_bestsellers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/constant/font_size.dart';
-import '../../../../../core/constant/navigator.dart';
-
-import '../components/category_grid_view.dart';
+import '../components/categories/category_grid_view.dart';
 import '../components/home_body_appbar.dart';
 import '../controllers/best_sellers/best_sellers_cubit.dart';
 
@@ -29,6 +25,7 @@ class _HomeBodyState extends State<HomeBody> {
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -42,7 +39,7 @@ class _HomeBodyState extends State<HomeBody> {
                 HomeAppBar(
                   home: widget.home,
                 ),
-                  const Center(
+                const Center(
                   child: CarouselScreen(),
                 ),
                 Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: CategoryGridView(category: widget.home!.categories)),
@@ -81,10 +78,9 @@ class _HomeBodyState extends State<HomeBody> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>      const ShowBestSellers(
-                                    productName: 'الأكثر مبيعا',
-                                  ))).then((_) => setState(() {}));
-
+                                  builder: (context) => const ShowBestSellers(
+                                        productName: 'الأكثر مبيعا',
+                                      ))).then((_) => setState(() {}));
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -109,10 +105,9 @@ class _HomeBodyState extends State<HomeBody> {
                     ],
                   ),
                 ),
-          const BestSeller(),
-
-          Padding(
-                  padding: EdgeInsets.only(right: 15, bottom: 10),
+                const BestSeller(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 15, bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -146,9 +141,10 @@ class _HomeBodyState extends State<HomeBody> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const ShowMoreAccessories(
-                                    productName: 'فتحات التكييف الألومنيوم',
-                                  ),)).then((_) => setState(() {}));
+                                builder: (context) => const ShowMoreAccessories(
+                                  productName: 'فتحات التكييف الألومنيوم',
+                                ),
+                              )).then((_) => setState(() {}));
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -173,7 +169,7 @@ class _HomeBodyState extends State<HomeBody> {
                     ],
                   ),
                 ),
-          SparePieceScreen(),
+                const SparePieceScreen(),
               ]
             : [
                 const Center(

@@ -1,14 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../api/api.dart';
-import '../../../../../../api/cart_api.dart';
-import '../../../../../../api/fav_api.dart';
 import '../../../../../../models/ordermodel.dart';
 
+import '../../../data/dataSource/home_data_source.dart';
 import 'best_sellers_state.dart';
 
 class BestSellersCubit extends Cubit<BestSellersState> {
-  Api? api;
+  HomeDataSource? api;
 
   List<ProductsModel>? products;
   BestSellersCubit({this.api}) : super(BestSellersInitial());

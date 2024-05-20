@@ -27,7 +27,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    banners = BlocProvider.of<CarouselHomeCubit>(context).carouselHome;
+    banners = BlocProvider.of<CarouselHomeCubit>(context).carouselHome!;
     List<Widget> lstWidget = [];
 
     for (int i = 0; i < banners.length; i++) {
