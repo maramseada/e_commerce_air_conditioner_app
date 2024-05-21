@@ -1,9 +1,12 @@
+import 'package:e_commerce/core/constant/font_size.dart';
 import 'package:e_commerce/core/constant/navigator.dart';
 import 'package:e_commerce/features/shoppingCart/presentaion/component/select_save_title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constant/colors.dart';
 import '../../../../core/constant/images.dart';
+import '../../../more/presentation/controllers/locations_cubit/locations_cubit.dart';
 import '../../../more/presentation/screens/locations/add_address.dart';
 
 
@@ -37,17 +40,15 @@ class _DeliveryStepState extends State<DeliveryStep> {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
         child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
-                  // Text(
-                  //   widget.formKey.currentState.validate() ? '' : 'يرجى اختيار عنوان',
-                  //   style: TextStyle(color: Colors.red),
-                  // ),
-                  SizedBox(
-                    height: size.height * 0.05,
+
+                  const SizedBox(
+                    height: 20
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,21 +58,17 @@ class _DeliveryStepState extends State<DeliveryStep> {
                         style: TextStyle(
                           fontFamily: 'Almarai',
                           fontWeight: FontWeight.w700,
-                          fontSize: size.width * 0.04,
-                          color: Color(0xff25170B),
+                          fontSize: getResponsiveFontSize(context, fontSize: 16),
+                          color: const Color(0xff25170B),
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {
-                          Navigator.push(
+                        onTap: () {                    BlocProvider.of<LocationsCubit>(context).getAreas();
+
+                        Navigator.push(
                               context,
                               MaterialPageRoute(
-                              builder: (context) => AddAddressScreen())).then((_) => setState(() {}));
-
-
-                          //     .then((_) {
-                          //   _reloadScreen(context);
-                          // });
+                              builder: (context) => const AddAddressScreen())).then((_) => setState(() {}));
 
                         },
                         child: Row(

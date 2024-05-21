@@ -13,7 +13,7 @@ class AreasDropDownBloc extends StatelessWidget {
     return BlocBuilder<LocationsCubit, LocationsState>(
       builder: (BuildContext context, state) {
         if (state is LocationsAreasLoading) {
-          return const CircularProgressIndicator();
+          return const SizedBox();
         } else if (state is LocationsAreasSuccess) {
           return AreasDropDownWidget(areas: state.areas);
         } else {

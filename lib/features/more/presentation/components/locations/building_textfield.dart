@@ -29,7 +29,7 @@ class BuildingTextField extends StatelessWidget {
           }
         },
         decoration: InputDecoration(
-          hintText: buildingNumber,
+          hintText: buildingNumber??'رقم المبنى',
           hintStyle: TextStyle(
             color: grayColor,
             fontSize:getResponsiveFontSize(context, fontSize: 18),

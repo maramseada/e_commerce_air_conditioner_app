@@ -1,13 +1,9 @@
 import 'package:e_commerce/core/constant/text.dart';
 import 'package:e_commerce/utilities/app_styles.dart';
-import 'package:e_commerce/widgets/phone.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_field/phone_number.dart';
-
 import '../../../api/api.dart';
 import '../../../core/constant/colors.dart';
 import '../../../models/places.dart';

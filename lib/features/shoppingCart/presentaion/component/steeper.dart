@@ -63,27 +63,24 @@ class _CartStepperState extends State<CartStepper> {
                           :const Color(0xff828282),
                     ),
                   ),
-                  SizedBox(
-                    height: size.height * 0.01,
+                  const SizedBox(
+                    height:5
                   ),
-                  Text('المنتجات المضافة',
-                      style: TextStyle(
-                        fontFamily: 'Almarai',
-                        fontWeight: FontWeight.w500,
-                        fontSize: size.width * 0.032,
-                        color: _activeStepIndex >= 0
-                            ?const Color(0xff2D2525)
-                            :const Color(0xff878383),
-                      )),
-                  Text('إلى العربة',
-                      style: TextStyle(
-                        fontFamily: 'Almarai',
-                        fontWeight: FontWeight.w500,
-                        fontSize: size.width * 0.032,
-                        color: _activeStepIndex >= 0
-                            ?const Color(0xff2D2525)
-                            : const Color(0xff878383),
-                      )),
+                  SizedBox(
+                    width: size.width*0.24,
+                    child: Center(
+                      child: Text('المنتجات المضافة إلى العربة',
+                        textAlign: TextAlign.center,  style: TextStyle(
+                            fontFamily: 'Almarai',
+                            fontWeight: FontWeight.w500,
+                            fontSize: size.width * 0.032,
+                            color: _activeStepIndex >= 0
+                                ?const Color(0xff2D2525)
+                                :const Color(0xff878383),
+                          )),
+                    ),
+                  ),
+
                 ],
               ),
               Column(
@@ -123,27 +120,22 @@ class _CartStepperState extends State<CartStepper> {
                           : const Color(0xff828282),
                     ),
                   ),
-                  SizedBox(
-                    height: size.height * 0.01,
+                  const SizedBox(
+                    height :5,
                   ),
-                  Text('تحديد عنوان توصيل',
-                      style: TextStyle(
-                        fontFamily: 'Almarai',
-                        fontWeight: FontWeight.w500,
-                        fontSize: size.width * 0.032,
-                        color: _activeStepIndex >= 1
-                            ?const Color(0xff2D2525)
-                            :const Color(0xff878383),
-                      )),
-                  Text('الطلب',
-                      style: TextStyle(
-                        fontFamily: 'Almarai',
-                        fontWeight: FontWeight.w500,
-                        fontSize: size.width * 0.032,
-                        color: _activeStepIndex >= 1
-                            ? const Color(0xff2D2525)
-                            : const Color(0xff878383),
-                      )),
+                  SizedBox(
+                    width: size.width*0.24,
+                    child: Text('تحديد عنوان توصيل الطلب',
+                     textAlign: TextAlign.center,   style: TextStyle(
+                          fontFamily: 'Almarai',
+                          fontWeight: FontWeight.w500,
+                          fontSize: size.width * 0.032,
+                          color: _activeStepIndex >= 1
+                              ?const Color(0xff2D2525)
+                              :const Color(0xff878383),
+                        )),
+                  ),
+
                 ],
               ),
               Column(
@@ -157,7 +149,7 @@ class _CartStepperState extends State<CartStepper> {
                       shape: BoxShape.circle,
                       color:
                           _activeStepIndex >= 2 ? greenColor : Colors.white,
-                      border: Border.all(color: Color(0xffACACAC)),
+                      border: Border.all(color: const Color(0xffACACAC)),
                     ),
                     child: Icon(
                       Icons.check,
@@ -180,24 +172,19 @@ class _CartStepperState extends State<CartStepper> {
                   SizedBox(
                     height: size.height * 0.01,
                   ),
-                  Text('   الدفع وإنهاء',
-                      style: TextStyle(
-                        fontFamily: 'Almarai',
-                        fontWeight: FontWeight.w500,
-                        fontSize: size.width * 0.032,
-                        color: _activeStepIndex >= 2
-                            ? const Color(0xff2D2525)
-                            : const Color(0xff878383),
-                      )),
-                  Text('     الطلب',
-                      style: TextStyle(
-                        fontFamily: 'Almarai',
-                        fontWeight: FontWeight.w500,
-                        fontSize: size.width * 0.032,
-                        color: _activeStepIndex >= 2
-                            ? const Color(0xff2D2525)
-                            : const Color(0xff878383),
-                      )),
+                  SizedBox(
+                    width: size.width*0.24,
+                    child: Text('الدفع وإنهاء الطلب',
+                        textAlign:TextAlign.center,style: TextStyle(
+                          fontFamily: 'Almarai',
+                          fontWeight: FontWeight.w500,
+                          fontSize: size.width * 0.032,
+                          color: _activeStepIndex >= 2
+                              ? const Color(0xff2D2525)
+                              : const Color(0xff878383),
+                        )),
+                  ),
+
                 ],
               ),
             ],

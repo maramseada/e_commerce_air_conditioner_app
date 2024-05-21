@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../models/places.dart';
 import '../../../data/dataSource/address_api.dart';
 import '../../components/locations/delete_address/delete_address.dart';
+import '../../screens/locations/add_address.dart';
 import '../../screens/locations/edit_address.dart';
 import 'locations_state.dart';
 
@@ -14,7 +15,7 @@ class LocationsCubit extends Cubit<LocationsState> {
   List<Places>? towns;
   int? areaId;
   int? cityId;
-  int? townId;
+  int? townId;  int? townIdAddAddress;
   LocationsCubit({required this.addressApi}) : super(LocationsInitial());
 
   void deleteAddress({required int id}) async {
@@ -32,6 +33,23 @@ class LocationsCubit extends Cubit<LocationsState> {
     emit(LocationsUpdateAddressLoading());
     try {
     final response =   await addressApi.updateAddress(address: Address(id: id, street: street!, buildingNum: buildingText!, landmark: landmark!, townId: townId));
+      if (response != null) {
+        if (response['status'] == 200) {
+          emit(LocationsUpdateAddressSuccess());
+        } else {
+          emit(LocationsUpdateAddressFailure(errMessage: 'update address failed'));
+        }
+      } else {
+        emit(LocationsUpdateAddressFailure(errMessage: 'response is null'));
+      }
+    } catch (e, stackTrace) {
+      emit(LocationsUpdateAddressFailure(errMessage: '$e $stackTrace'));
+    }
+  }
+  void addAddress() async {
+    emit(LocationsUpdateAddressLoading());
+    try {
+    final response =   await addressApi.addAddress(address: Address( street: streetAddAddress!, buildingNum: buildingTextAddAddress!, landmark: landmarkAddAddress!, townId: townIdAddAddress));
       if (response != null) {
         if (response['status'] == 200) {
           emit(LocationsUpdateAddressSuccess());

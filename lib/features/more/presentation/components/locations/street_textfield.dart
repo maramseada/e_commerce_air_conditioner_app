@@ -29,7 +29,7 @@ class StreetTextField extends StatelessWidget {
           }
         },
         decoration: InputDecoration(
-          hintText: streetInitial,
+          hintText: streetInitial?? 'رقم الشارع',
           hintStyle: TextStyle(
             color: grayColor,
             fontSize: getResponsiveFontSize(context, fontSize: 18),

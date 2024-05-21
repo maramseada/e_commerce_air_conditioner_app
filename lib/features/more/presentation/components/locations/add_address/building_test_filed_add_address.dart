@@ -1,16 +1,22 @@
-import 'package:e_commerce/core/constant/font_size.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/constant/colors.dart';
-import '../../screens/locations/edit_address.dart';
+import '../../../../../../core/constant/colors.dart';
+import '../../../../../../core/constant/font_size.dart';
+import '../../../screens/locations/add_address.dart';
 
-class NearByLocationWidget extends StatelessWidget {
-  final String landmarkInitial;
-  const NearByLocationWidget({super.key, required this.landmarkInitial});
+class BuildingTextFieldAddAddress extends StatefulWidget {
+  final String? buildingNumber;
+
+  const BuildingTextFieldAddAddress({super.key, this.buildingNumber});
 
   @override
+  State<BuildingTextFieldAddAddress> createState() => _BuildingTextFieldAddAddressState();
+}
+
+class _BuildingTextFieldAddAddressState extends State<BuildingTextFieldAddAddress> {
+  @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       padding: const EdgeInsets.only(
         top: 10,
         left: 10,
@@ -19,20 +25,20 @@ class NearByLocationWidget extends StatelessWidget {
       child: TextFormField(
         textAlign: TextAlign.right,
         onChanged: (value) {
-          landmark = value;
+          buildingTextAddAddress = value;
         },
         validator: (value) {
           if (value!.isEmpty) {
-            return 'برجاء ادخال أقرب علامة مميزة للعنوان ';
+            return 'برجاء ادخال رقم المبنى ';
           } else {
             return null;
           }
         },
         decoration: InputDecoration(
-          hintText: landmarkInitial?? 'أقرب علامة مميزة للعنوان',
+          hintText: 'رقم المبنى',
           hintStyle: TextStyle(
             color: grayColor,
-            fontSize:getResponsiveFontSize(context, fontSize: 18),
+            fontSize: getResponsiveFontSize(context, fontSize: 18),
             fontFamily: 'Almarai',
             fontWeight: FontWeight.w600,
           ),

@@ -91,7 +91,7 @@ class _TownsDropDownWidgetState extends State<TownsDropDownWidget> {
                 Places? selectedTown = widget.towns.firstWhereOrNull((town) => town.name == value);
                 if (selectedTown != null) {
                   townID = selectedTown.id;
-                  BlocProvider.of<LocationsCubit>(context).townId = selectedTown.id;
+                  BlocProvider.of<LocationsCubit>(context).townId = selectedTown.id;         BlocProvider.of<LocationsCubit>(context).townIdAddAddress = selectedTown.id;
                 }
               });
             }

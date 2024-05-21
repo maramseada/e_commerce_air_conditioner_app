@@ -138,16 +138,16 @@ class ApiAddress {
     return data;
   }
 
-  Future addAddress(Address addrress,) async {
+  Future addAddress({required Address address}) async {
     final url = '$baseUrl/add/address';
     dynamic data;
     try {
       final dio = Dio();
       FormData formData = FormData.fromMap({
-        'town_id': addrress.townId,
-        'building_num': addrress.buildingNum,
-        'street': addrress.street,
-        'landmark': addrress.landmark,
+        'town_id': address.townId,
+        'building_num': address.buildingNum,
+        'street': address.street,
+        'landmark': address.landmark,
       });
 
       final token = await getString('token');

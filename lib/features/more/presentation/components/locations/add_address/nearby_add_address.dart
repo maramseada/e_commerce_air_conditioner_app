@@ -1,16 +1,20 @@
-import 'package:e_commerce/core/constant/font_size.dart';
+import 'package:e_commerce/features/more/presentation/screens/locations/add_address.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/constant/colors.dart';
-import '../../screens/locations/edit_address.dart';
+import '../../../../../../core/constant/colors.dart';
+import '../../../../../../core/constant/font_size.dart';
 
-class NearByLocationWidget extends StatelessWidget {
-  final String landmarkInitial;
-  const NearByLocationWidget({super.key, required this.landmarkInitial});
+class NearByAddAddress extends StatefulWidget {
+  const NearByAddAddress({super.key});
 
   @override
+  State<NearByAddAddress> createState() => _NearByAddAddressState();
+}
+
+class _NearByAddAddressState extends State<NearByAddAddress> {
+  @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       padding: const EdgeInsets.only(
         top: 10,
         left: 10,
@@ -19,7 +23,7 @@ class NearByLocationWidget extends StatelessWidget {
       child: TextFormField(
         textAlign: TextAlign.right,
         onChanged: (value) {
-          landmark = value;
+          landmarkAddAddress = value;
         },
         validator: (value) {
           if (value!.isEmpty) {
@@ -29,7 +33,7 @@ class NearByLocationWidget extends StatelessWidget {
           }
         },
         decoration: InputDecoration(
-          hintText: landmarkInitial?? 'أقرب علامة مميزة للعنوان',
+          hintText: 'أقرب علامة مميزة للعنوان',
           hintStyle: TextStyle(
             color: grayColor,
             fontSize:getResponsiveFontSize(context, fontSize: 18),

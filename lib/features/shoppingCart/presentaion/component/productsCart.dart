@@ -5,11 +5,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../controllers/update_product/update_product_cubit.dart';
 class ProductsCart extends StatefulWidget {
 
-  int amountProduct ;
-  int maxAmount ;
+final  int amountProduct ;
+final  int maxAmount ;
   final void Function(int) onAmountChange; // Define callback function
 
-  ProductsCart({super.key,  required this.amountProduct, required this.maxAmount, required this.onAmountChange});
+const  ProductsCart({super.key,  required this.amountProduct, required this.maxAmount, required this.onAmountChange});
 
   @override
   State<ProductsCart> createState() => _ProductsCartState();
@@ -56,7 +56,7 @@ class _ProductsCartState extends State<ProductsCart> {
                       color: incrementAmount ? const Color(0xFFEFF5F9) : Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        color: incrementAmount ? Colors.transparent : Color(0xB31D75B1),
+                        color: incrementAmount ? Colors.transparent : const Color(0xB31D75B1),
                         width: 2.0,
                       ),
                     ),
@@ -70,7 +70,6 @@ class _ProductsCartState extends State<ProductsCart> {
                               amount++;
                               widget.onAmountChange(amount); // Call callback function with selected value
 
-                              print('amount $amount');
                             }
                           });
                         },
@@ -93,7 +92,7 @@ class _ProductsCartState extends State<ProductsCart> {
                       color: incrementAmount ? const Color(0xFFEFF5F9) : Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        color: incrementAmount ? Colors.transparent : Color(0xB31D75B1),
+                        color: incrementAmount ? Colors.transparent : const Color(0xB31D75B1),
                         width: 2.0,
                       ),
                     ),
@@ -106,7 +105,6 @@ class _ProductsCartState extends State<ProductsCart> {
                               amount--;
                               widget.onAmountChange(amount); // Call callback function with selected value
 
-                              print('amount $amount');
                             }
                           });
                         },
