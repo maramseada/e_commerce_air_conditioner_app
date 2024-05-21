@@ -12,7 +12,8 @@ import '../more/presentation/screens/more_page.dart';
 import '../our_projects/presentation/screens/our_projects_page.dart';
 import '../our_work/presentation/controllers/our_work_cubit.dart';
 import '../our_work/presentation/screens/ourWorkPage.dart';
-import '../screens/shoppingCart/shoppingCartPage.dart';
+import '../shoppingCart/presentaion/controllers/Cart_cubit/cart_cubit.dart';
+import '../shoppingCart/presentaion/screens/shoppingCartPage.dart';
 
 class BottomBarPage extends StatefulWidget {
   BottomBarPage({super.key});
@@ -40,6 +41,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
 
     BlocProvider.of<HomeCubit>(context).getHome();
     BlocProvider.of<CarouselHomeCubit>(context).getCarouselHome();
+    BlocProvider.of<CartCubit>(context).getCart();
 
   }
 
@@ -98,6 +100,12 @@ class _BottomBarPageState extends State<BottomBarPage> {
       setState(() {
         _selectedIndex = index;
         BlocProvider.of<OurWorkCubit>(context).getWorksCategories();
+
+      });
+    }  if (index == 1|| _selectedIndex == 1) {
+      setState(() {
+        _selectedIndex = index;
+        BlocProvider.of<CartCubit>(context).getCart();
 
       });
     }

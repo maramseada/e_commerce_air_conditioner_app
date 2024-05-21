@@ -13,6 +13,7 @@ import 'package:e_commerce/features/home/presentation/controllers/Home/home_cubi
 import 'package:e_commerce/features/screens/login/login.dart';
 
 import 'package:e_commerce/features/screens/sign_up/register.dart';
+import 'package:e_commerce/features/shoppingCart/presentaion/controllers/Cart_cubit/cart_cubit.dart';
 import 'package:e_commerce/utilities/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
@@ -45,6 +46,8 @@ import 'features/our_projects/data/dataSource/projects_api.dart';
 import 'features/our_projects/presentation/controllers/our_projects_cubit.dart';
 import 'features/our_work/data/dataSource/works_api.dart';
 import 'features/our_work/presentation/controllers/our_work_cubit.dart';
+import 'features/shoppingCart/data/data_source/cart_data_source.dart';
+import 'features/shoppingCart/presentaion/controllers/update_product/update_product_cubit.dart';
 import 'features/splash/splash.dart';
 
 void main() async {
@@ -84,7 +87,7 @@ class MyApp extends StatelessWidget {
   ApiAddress addressApi = ApiAddress();
   FilterDataSource filterApi = FilterDataSource();
   CategoriesDataSource categoryApi = CategoriesDataSource();
-  HomeDataSource homeApi = HomeDataSource();
+  HomeDataSource homeApi = HomeDataSource();  CartDataSource cartDataSource = CartDataSource();
 @override
   Widget build(BuildContext context) {
     if (firstTime != null && firstTime == false) {
@@ -120,7 +123,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => FilterCubit( filterApi )),
           BlocProvider(create: (context) => BrandsCubit( filterApi )),
           BlocProvider(create: (context) => CategoriesCubit( categoryApi )),
-          BlocProvider(create: (context) => SearchCubit( homeApi )),
+          BlocProvider(create: (context) => SearchCubit( homeApi )),      BlocProvider(create: (context) => CartCubit( cartDataSource )),  BlocProvider(create: (context) => CartProductCubit( cartDataSource )),
           BlocProvider(create: (context) => GuidLinesCubit(  api: settingsApi, apiHome: homeApi )),
         ],
         child: MaterialApp(

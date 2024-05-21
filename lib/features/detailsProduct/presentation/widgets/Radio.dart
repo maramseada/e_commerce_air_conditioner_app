@@ -61,8 +61,6 @@ class _RadioScreenState extends State<RadioScreen> {
                         radioIndex = index + 1; // Update radioIndex with the selected index + 1
                         widget.onItemSelected(radioIndex);
 
-                        print('installingOptions$installingOptions');
-                        print('radioIndex$radioIndex');
                       });
                     },
                     child: Container(
